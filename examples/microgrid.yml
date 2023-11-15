@@ -1,0 +1,19 @@
+#Li-Ion Battery Parameters
+storage_capacity: 1100.
+efficiency: 0.95
+soc_initial: 0.95
+depth_of_discharge: 90.
+soc_minimum: 0.1
+time_unit: 15
+milp_flag: true
+solver: "ort"
+test_flag: false
+min_battery_capacity_factor: 0.8
+battery_cost_per_kWh: 20.
+reduction_coefficient: 0.99998
+degradation_period: 7
+weight_emission: 1.0
+weight_degradation: 0.0
+weight_price: 1.0
+degradation_flag: false
+seed: 40

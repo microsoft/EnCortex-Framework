@@ -1,0 +1,41 @@
+# # breathe==4.35.0
+# # furo
+# git+https://github.com/sphinx-contrib/video
+# ipywidgets==8.0.5
+# jupyter-sphinx==0.4.0
+# myst-nb==0.17.2
+# myst-parser==0.18.0
+# nbsphinx==0.8.12
+# pandoc==2.3
+# sphinx==7.2.6
+# sphinx-autobuild==2021.3.14
+# sphinx-book-theme==1.0.0
+# sphinx-copybutton==0.5.2
+# sphinx-design==0.4.0
+# # sphinx-proof
+# sphinx-rtd-theme==0.5.2
+# sphinx-tabs==3.4.1
+# sphinx-togglebutton==0.3.2
+# sphinx_markdown_builder==0.5.5
+# sphinxemoji==0.2.0
+# breathe==4.35.0
+# furo
+breathe
+git+https://github.com/sphinx-contrib/video
+ipywidgets
+jupyter-sphinx
+myst-nb
+myst-parser
+nbsphinx
+pandoc
+sphinx
+sphinx-autobuild
+sphinx-book-theme
+sphinx-copybutton
+sphinx-design
+# sphinx-proof
+sphinx-rtd-theme
+sphinx-tabs
+sphinx-togglebutton
+sphinx_markdown_builder
+sphinxemoji

@@ -1,0 +1,1108 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Scenario 1: Solving Battery Arbitrage Problem (Cost and Carbon Optimization) &#8212; EnCortex Docs</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/energy_arbitrage';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">EnCortex Docs</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/index.html">Introduction.</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/setup.html">Setup</a></li>
+
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/battery_arbitrage.html">Energy Arbitrage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/microgrid.html">MicroGrid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/configurations.html">Configurations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/index.html">Advanced</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/setup.html">AzureML Compute</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../advanced/run.html">Develop locally(Internal-use only)</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials_advanced/index.html">Tutorials(Advanced)</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials_advanced/energy_arbitrage.html">Energy Arbitrage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../features/index.html">EnCortex Features</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../algos/index.html">Developer Concepts</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../integration/index.html">Integrating with Azure</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../integration/application_insights.html">Azure Monitor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">Contributing</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/microsoft/EnCortex" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/energy_arbitrage.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Scenario 1: Solving Battery Arbitrage Problem (Cost and Carbon Optimization)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Brief-look-into-EnCortex-implementation-details">Brief look into EnCortex implementation details</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-1-:-Import-the-libraries:">Step 1 : Import the libraries:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-2:-Inputs-from-the-User">Step 2: Inputs from the User</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-3:-Instantiating-Objects-of-the-required-abstractions-from-the-framework:">Step 3: Instantiating Objects of the required abstractions from the framework:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-4:-Creating-Decision-units-for-the-problem-statement:">Step 4: Creating Decision units for the problem statement:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-5:-Function-to-Store-Results-in-a-dataframe-and-then-later-to-csv-format:">Step 5: Function to Store Results in a dataframe and then later to csv format:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-6:-Instantiate-the-environment-object-from-the-scenario-specific-environment-class">Step 6: Instantiate the environment object from the scenario specific environment class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-7:-Training-Pipeline-for-the-algorithms:">Step 7: Training Pipeline for the algorithms:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-8:-Testing-Pipeline-for-the-algorithms-:">Step 8: Testing Pipeline for the algorithms :</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Load-Test-Data-and-Reinitialization:">Load Test Data and Reinitialization:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-9:-Result-Visualization:">Step 9: Result Visualization:</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="Scenario-1:-Solving-Battery-Arbitrage-Problem-(Cost-and-Carbon-Optimization)">
+<h1>Scenario 1: Solving Battery Arbitrage Problem (Cost and Carbon Optimization)<a class="headerlink" href="#Scenario-1:-Solving-Battery-Arbitrage-Problem-(Cost-and-Carbon-Optimization)" title="Permalink to this heading">#</a></h1>
+<p>Our partner, a global energy provider is deploying Li-ion batteries at their consumer premises to either maximize economic profit (increase cost savings by charging/discharging the battery at off-peak/peak price periods) or maximize environmental impact (reduce overall carbon footprint by charging/discharging the battery based on usage of renewable/non-renewable energy sources from the utility grid).</p>
+<!-- Thus, it is important to optimize the management and scheduling of these batteries (when to charge or discharge) to maximize the objective. Mathematically,
+$$
+max \sum_{t=1}^{T}(\omega_{carbon}{Em}_{t} + \omega_{cost}{Cost}_{t} - \omega_{deg}{DegCost}_{t})
+$$ --><p align="center"><p><img alt="88b8acd1052a4da98c92f2a303a2f736" class="no-scaled-link" src="../_images/energy_arbitrage.png" style="width: 600px; height: 200px;" /></p>
+</p><section id="Brief-look-into-EnCortex-implementation-details">
+<h2>Brief look into EnCortex implementation details<a class="headerlink" href="#Brief-look-into-EnCortex-implementation-details" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>The Entities used here are <code class="docutils literal notranslate"><span class="pre">Battery</span></code> and <code class="docutils literal notranslate"><span class="pre">Grid</span></code>, which is an umbrella term for a utility grid.</p></li>
+<li><p>The <em>action space</em> or the <em>decision</em> in this scenario is to either charge the battery, discharge the battery or letting it stay idle.</p></li>
+<li><p>The supported optimizers are <code class="docutils literal notranslate"><span class="pre">Mixed-Integer</span> <span class="pre">Linear</span> <span class="pre">Programming</span></code>, <code class="docutils literal notranslate"><span class="pre">Reinforcement</span> <span class="pre">Learning</span></code>, <code class="docutils literal notranslate"><span class="pre">Simulated</span> <span class="pre">Annealing</span></code></p></li>
+<li><p>The data in this scenario is only present with the <code class="docutils literal notranslate"><span class="pre">Grid</span></code> entity. The <code class="docutils literal notranslate"><span class="pre">csv</span></code> file format is illustrated in the table below:</p></li>
+</ol>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>timestamps</p></th>
+<th class="head"><p>prices</p></th>
+<th class="head"><p>emissions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2019-10-20 00:00:00</p></td>
+<td><p>40.47</p></td>
+<td><p>116.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+<p>For more details, please refer to <code class="docutils literal notranslate"><span class="pre">Section</span> <span class="pre">5.1</span></code> in our paper: <a class="reference external" href="./_static/nsdi23fall-paper705.pdf">EnCortex</a></p>
+<p>Here, we aim to use the below objective function:</p>
+<div class="math notranslate nohighlight">
+\[max \sum_{t=1}^{T}(\omega_{carbon}{Em}_{t} + \omega_{cost}{Cost}_{t} - \omega_{deg}{DegCost}_{t})\]</div>
+<p>where <span class="math notranslate nohighlight">\(\omega_{field}\)</span> corresponds to relative weight/importance of that field/attribute. The field here are cost savings(<span class="math notranslate nohighlight">\(Cost_t\)</span>), carbon emission savings(<span class="math notranslate nohighlight">\(Em_t\)</span>) and degradation cost associated with the battery(<span class="math notranslate nohighlight">\(DegCost_t\)</span>). The <span class="math notranslate nohighlight">\(T\)</span> corresponds to the horizon over which the objective function is maximized.</p>
+</section>
+<section id="Step-1-:-Import-the-libraries:">
+<h2>Step 1 : Import the libraries:<a class="headerlink" href="#Step-1-:-Import-the-libraries:" title="Permalink to this heading">#</a></h2>
+<p>Here, first we import all the general as well as encortex based abstractions necessary to solve the problem statement.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import external libraries and some modules</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">rsome</span> <span class="kn">import</span> <span class="n">ro</span>
+<span class="kn">from</span> <span class="nn">rsome.lp</span> <span class="kn">import</span> <span class="n">Affine</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pytorch_lightning</span> <span class="k">as</span> <span class="nn">pl</span>
+
+<span class="kn">from</span> <span class="nn">encortex.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
+<span class="kn">from</span> <span class="nn">encortex.decision_unit</span> <span class="kn">import</span> <span class="n">DecisionUnit</span>
+<span class="kn">from</span> <span class="nn">encortex.environments.battery_arbitrage</span> <span class="kn">import</span> <span class="n">BatteryArbitrageMILPEnv</span>
+<span class="kn">from</span> <span class="nn">encortex.environments.battery_arbitrage</span> <span class="kn">import</span> <span class="n">BatteryArbitrageRLEnv</span>
+<span class="kn">from</span> <span class="nn">encortex.grid</span> <span class="kn">import</span> <span class="n">Grid</span>
+<span class="kn">from</span> <span class="nn">encortex.sources</span> <span class="kn">import</span> <span class="n">Battery</span>
+<span class="kn">from</span> <span class="nn">encortex.optimizers.milp</span> <span class="kn">import</span> <span class="n">MILPOptimizer</span>
+<span class="kn">from</span> <span class="nn">encortex.optimizers.rl</span> <span class="kn">import</span> <span class="n">EnCortexRLOptimizer</span>
+<span class="kn">from</span> <span class="nn">encortex.data</span> <span class="kn">import</span> <span class="n">MarketData</span>
+<span class="kn">from</span> <span class="nn">encortex.backend</span> <span class="kn">import</span> <span class="n">DFBackend</span>
+<span class="kn">from</span> <span class="nn">encortex.callbacks.env_callback</span> <span class="kn">import</span> <span class="n">EnvCallback</span>
+<span class="kn">from</span> <span class="nn">wandb.integration.sb3</span> <span class="kn">import</span> <span class="n">WandbCallback</span>
+<span class="kn">from</span> <span class="nn">stable_baselines3.common.logger</span> <span class="kn">import</span> <span class="n">HumanOutputFormat</span><span class="p">,</span> <span class="n">KVWriter</span><span class="p">,</span> <span class="n">Logger</span>
+<span class="kn">from</span> <span class="nn">encortex.utils.mlflow_utils</span> <span class="kn">import</span> <span class="n">MLflowOutputFormat</span>
+
+
+
+<span class="kn">from</span> <span class="nn">IPython.core.interactiveshell</span> <span class="kn">import</span> <span class="n">InteractiveShell</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">clear_output</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">repeat</span>
+<span class="n">InteractiveShell</span><span class="o">.</span><span class="n">ast_node_interactivity</span><span class="o">=</span><span class="s2">&quot;all&quot;</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Step-2:-Inputs-from-the-User">
+<h2>Step 2: Inputs from the User<a class="headerlink" href="#Step-2:-Inputs-from-the-User" title="Permalink to this heading">#</a></h2>
+<p>Next, we present certain configurable parameters, that the user can tweak and experiment to improve the performance for the scenario</p>
+<ol class="arabic">
+<li><p>Optimization Algorithms : We support multiple algorithms such as ,</p>
+<ul class="simple">
+<li><p>Mixed Integer Linear Programming (MILP) :There are various solvers which can be used for MILP. We support : OR-Tools (“ort”), Gurobi (“grb”), Cplex (“cpx”), CyLP (“clp”), ECOS (“eco”), MOSEK (“msk”) and so on. We recommend using OR-Tools as a free open source solver producing similar reproducible correct solution. Gurobi is the other recommended solver which although commercial, takes lesser solving time to produce similar result.</p></li>
+<li><p>Simulated Annealing (SA) : Simulated Annealing does not require any solver.</p></li>
+<li><p>Deep Reinforcement Learning (DRL) : The following cell shows how to run Reinforcement Learning. Deep Q-Networks (dqn) is used for the problem statement given here. We support multiple other reinforcement learning algorithms like : Advantage Actor Critic (a2c), Proximal Policy Optimization (PPO) and so on. Therefore the respective solver names to be used are : “dqn”, “a2c”, “PPO”. Check for all the optimizers that can be used from
+<a class="reference external" href="../encortex/encortex.optimizers.battery_arbitrage_optimizer.rst">here</a>.</p></li>
+</ul>
+<p>The user can use the following flags to specify the type of algorithm to be used and mention the solver name to run the optimization.</p>
+</li>
+</ol>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#specify the type of optimization to be used:</span>
+<span class="n">milp_flag</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="s2">&quot;grb&quot;</span> <span class="c1">#the algorithm to be used</span>
+
+<span class="c1"># In order to use RL:</span>
+<span class="c1"># milp_flag = True</span>
+<span class="c1"># solver = &quot;grb&quot; #the algorithm to be used</span>
+</pre></div>
+</div>
+</div>
+<ol class="arabic" start="2">
+<li><p>Selection of Objectives: An user can choose to optimize for any combination of the following objectives by providing the relative importance weights as a float value between 0.0 to 1.0:</p>
+<ul class="simple">
+<li><p>Carbon Optimization</p></li>
+<li><p>Cost Optimization</p></li>
+</ul>
+<p>For example, in the following cell, equal importance has been given to emission and price values, thus the algorithms will optimize for both the objectives leading to optimal schedules that the energy operator can take by which both increasing profits and reducing carbon footprints can be taken care of.</p>
+<p>Because of the high variability in the data, it is not always intuitive to provide equal importance to both emissions and prices so as to lead to optimal savings. For this, we use Pareto Optimization curves to come to a single point of optimality, as discussed in our Paper.</p>
+<p>Since batteries perform a limited number of cycles during their lifetime, we consider an accurate battery degradation model to model the battery’s lifetime. Hence, the Degradation importance weightage is also provided in addition to the above.</p>
+</li>
+</ol>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#provide optimization weights for the objectives</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="c1"># # Cost Optimization</span>
+<span class="c1"># omega = 0.0</span>
+
+<span class="c1"># # Carbon Optimization</span>
+<span class="c1"># omega = 1.0</span>
+<br/></pre></div>
+</div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Battery Configurations: An user can run several experiments by tweaking the battery configurations. Following are the battery configurations which are left to user for configurable inputs:</p>
+<ul class="simple">
+<li><p>storage_capacity : the battery capacity (in kWh)</p></li>
+<li><p>efficiency : here, charging and discharging efficiency (in %) taken the same/ if different take it differently</p></li>
+<li><p>depth_of_discharge : the maximum discharge (in %) percentage that can happen at a time, here 90%</p></li>
+<li><p>soc_minimum : the minimum state of charge of the battery, below which the battery should not be explored</p></li>
+<li><p>timestep : battery decision time steps</p></li>
+<li><p>degradation_flag : whether to have degradation model in place or not for the batteries</p></li>
+<li><p>min_battery_capacity_factor : the battery capacity reduction percentage due to degradation, below which if capacity reduces due to overuse, battery does not stay at good optimal health</p></li>
+<li><p>battery_cost_per_kWh : the battery replacement cost (in $/kWh)</p></li>
+<li><p>reduction_coefficient : after every charge-discharge cycles over a certain period, the battery capacity reduced by the reduction coefficienct</p></li>
+<li><p>degradation_period_in_days : the period after which battery degrades</p></li>
+<li><p>action : battery actions, Here the battery can take 3 different actions {Charge/Discharge/Stay idle} at different power rates.</p></li>
+<li><p>soc_initial : initial state of charge of the battery to run the test experiments</p></li>
+<li><p>test_flag : the flag initiates random initial state of charge of the battery during training runs/experiments to avoid overfitting</p></li>
+<li><p>schedule: Schedule at which these actions must be executed at</p></li>
+</ul>
+</li>
+</ol>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">run experiments for the following battery configurations</span>
+<span class="sd">elements in the list denote different batteries/battery configurations to be used in the scenario together (here just 1 element indicating 1 battery being used)</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">timestep</span><span class="o">=</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">)</span>
+<span class="n">storage_capacity</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">charging_efficiency</span><span class="o">=</span><span class="mf">1.</span>
+<span class="n">discharging_efficiency</span><span class="o">=</span><span class="mf">1.</span>
+<span class="n">soc_initial</span><span class="o">=</span><span class="mf">0.2</span>
+<span class="n">depth_of_discharge</span><span class="o">=</span><span class="mi">90</span>
+<span class="n">soc_minimum</span><span class="o">=</span><span class="mf">0.1</span>
+<span class="n">degradation_flag</span><span class="o">=</span><span class="kc">False</span>
+<span class="n">min_battery_capacity_factor</span><span class="o">=</span><span class="mf">0.8</span>
+<span class="n">battery_cost_per_kWh</span><span class="o">=</span><span class="mf">200.</span>
+<span class="n">reduction_coefficient</span><span class="o">=</span><span class="mf">0.0</span>
+<span class="n">degradation_period</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">test_flag</span><span class="o">=</span><span class="kc">True</span>
+<span class="n">schedule</span><span class="o">=</span><span class="s2">&quot;0 * * * *&quot;</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="mi">42</span>
+<br/></pre></div>
+</div>
+</div>
+</section>
+<section id="Step-3:-Instantiating-Objects-of-the-required-abstractions-from-the-framework:">
+<h2>Step 3: Instantiating Objects of the required abstractions from the framework:<a class="headerlink" href="#Step-3:-Instantiating-Objects-of-the-required-abstractions-from-the-framework:" title="Permalink to this heading">#</a></h2>
+<p>Here, the energy operator determines the entities involved in the scenario and uses the framework provided abstractions for the same. Following are the two entities used here:</p>
+<ol class="arabic simple">
+<li><p>Battery Entity : We inherit the storage class to define a Li-ion battery entity. In this scenario, we define three battery actions: charge at max rate, discharge at max rate or stay idle. The energy operator populates the parameter values based on their battery configuration and instantiate an EnCortex-Battery object.</p></li>
+</ol>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">run experiments for the following battery configurations</span>
+<span class="sd">elements in the list denote different batteries/battery configurations to be used in the scenario together (here just 1 element indicating 1 battery being used)</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">battery</span> <span class="o">=</span> <span class="n">Battery</span><span class="p">(</span>
+    <span class="n">timestep</span><span class="o">=</span><span class="n">timestep</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Battery&quot;</span><span class="p">,</span>
+    <span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Battery&quot;</span><span class="p">,</span>
+    <span class="n">storage_capacity</span><span class="o">=</span><span class="n">storage_capacity</span><span class="p">,</span>
+    <span class="n">charging_efficiency</span><span class="o">=</span><span class="n">charging_efficiency</span><span class="p">,</span>
+    <span class="n">discharging_efficiency</span><span class="o">=</span><span class="n">discharging_efficiency</span><span class="p">,</span>
+    <span class="n">soc_initial</span><span class="o">=</span><span class="n">soc_initial</span><span class="p">,</span>
+    <span class="n">depth_of_discharge</span><span class="o">=</span><span class="n">depth_of_discharge</span><span class="p">,</span>
+    <span class="n">soc_minimum</span><span class="o">=</span><span class="n">soc_minimum</span><span class="p">,</span>
+    <span class="n">degradation_flag</span><span class="o">=</span><span class="n">degradation_flag</span><span class="p">,</span>
+    <span class="n">min_battery_capacity_factor</span><span class="o">=</span><span class="n">min_battery_capacity_factor</span><span class="p">,</span>
+    <span class="n">battery_cost_per_kWh</span><span class="o">=</span><span class="n">battery_cost_per_kWh</span><span class="p">,</span>
+    <span class="n">reduction_coefficient</span><span class="o">=</span><span class="n">reduction_coefficient</span><span class="p">,</span>
+    <span class="n">degradation_period</span><span class="o">=</span><span class="n">degradation_period</span><span class="p">,</span>
+    <span class="n">test_flag</span><span class="o">=</span><span class="n">test_flag</span><span class="p">,</span>
+    <span class="n">schedule</span><span class="o">=</span><span class="n">schedule</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Utility Grid: Since Energy Arbitrage does not require any bidding decisions in the market, we modify the real-time market entity to a simplified real-time market entity that captures just the real-time market prices along with the carbon footprint information. This shows the utility of our abstractions, which allow seamless modification/extension of the definitions based on the scenario. Check into the encortex references to know more about the argument details.</p></li>
+</ol>
+<p>Now, this entity requires loading data of the market prices and the carbon emissions. There are two ways of using the data:</p>
+<ul class="simple">
+<li><p><strong>Download data</strong> from any public source (here, we share an onedrive <a class="reference external" href="https://microsoftapc-my.sharepoint.com/:f:/g/personal/t-vballoli_microsoft_com/Evd4JIo7F4hFjI9Y_MJPVEYBYc4iP2i-OND1gfoCx3xiIQ?e=hhzg4M">link</a> to show the functionality of the same), create a folder named data and add your train.csv and test.csv files for both forecast and actual data.</p></li>
+<li><p>Using <strong>Data Loaders</strong> of Encortex: We have some publicly available data support in the framework.(The commented section shows the use of Data Loaders here). Also, one needs to replace all the forecast_df and actual_df with forecast_df.data and actual_df.data here. The existing data loaders takes in 3 user-specific arguments:</p>
+<ul>
+<li><p>train: A flag saying whether training/test data to load</p></li>
+<li><p>forecasts: A flag saying whether experiments are to be run on forecasts/actuals</p></li>
+<li><p>forecast_type: A string specifyng the type of forecast:</p>
+<ul>
+<li><p>noise : Adding noise to the actual values and treating that as forecasts</p></li>
+<li><p>smoothing : Smoothing the actual values and using that as forecasts</p></li>
+<li><p>yesterdays : assuming yesterday’s actual data as forecasts for today’s data</p></li>
+<li><p>meanprev : assuming mean of previous n days as forecasts for today’s data (default)</p></li>
+<li><p>lgbm : using light gradient boosting machine to produce forecasts</p></li>
+<li><p>nbeats: using nbeats model to produce forecasts</p></li>
+<li><p>auto : if forecasts already available load that instead</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Since schedules are made ahead of time, accurate forecasts are required for producing optimal decisions. We recommend using nbeats as a forecast type for this purpose.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forecast_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/home/akshayn/main_encortex//data/UK_data_2020_meanprev_shortened.csv&quot;</span><span class="p">)</span>
+<span class="n">actual_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/home/akshayn/main_encortex//data/UK_data_2020_actuals_shortened.csv&quot;</span><span class="p">)</span>
+
+<span class="n">forecast_df</span><span class="p">[[</span><span class="s1">&#39;emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;prices&#39;</span><span class="p">]]</span>  <span class="o">=</span> <span class="n">forecast_df</span><span class="p">[[</span><span class="s1">&#39;emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;prices&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">actual_df</span><span class="p">[[</span><span class="s1">&#39;emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;prices&#39;</span><span class="p">]]</span>  <span class="o">=</span> <span class="n">actual_df</span><span class="p">[[</span><span class="s1">&#39;emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;prices&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="n">grid_data</span> <span class="o">=</span> <span class="n">MarketData</span><span class="o">.</span><span class="n">parse_backend</span><span class="p">(</span>
+    <span class="mi">3</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">),</span> <span class="n">price_forecast</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">forecast_df</span><span class="p">[</span><span class="s1">&#39;prices&#39;</span><span class="p">],</span> <span class="n">forecast_df</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">price_actual</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">actual_df</span><span class="p">[</span><span class="s1">&#39;prices&#39;</span><span class="p">],</span> <span class="n">actual_df</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">carbon_emissions_forecast</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">forecast_df</span><span class="p">[</span><span class="s1">&#39;emissions&#39;</span><span class="p">],</span> <span class="n">forecast_df</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">carbon_emissions_actual</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">actual_df</span><span class="p">[</span><span class="s1">&#39;emissions&#39;</span><span class="p">],</span> <span class="n">actual_df</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">carbon_prices_forecast</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">forecast_df</span><span class="p">[</span><span class="s1">&#39;prices&#39;</span><span class="p">],</span> <span class="n">forecast_df</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">carbon_prices_actual</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">actual_df</span><span class="p">[</span><span class="s1">&#39;prices&#39;</span><span class="p">],</span> <span class="n">actual_df</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">volume_forecast</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="n">volume_actual</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span>
+    <span class="n">timestep</span><span class="o">=</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">),</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Grid&quot;</span><span class="p">,</span>
+    <span class="nb">id</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Grid&quot;</span><span class="p">,</span>
+    <span class="n">bid_start_time_schedule</span><span class="o">=</span><span class="s2">&quot;0 * * * *&quot;</span><span class="p">,</span>
+    <span class="n">bid_window</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;h&quot;</span><span class="p">),</span>
+    <span class="n">commit_start_schedule</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;h&quot;</span><span class="p">),</span>
+    <span class="n">commit_end_schedule</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;h&quot;</span><span class="p">),</span>
+    <span class="n">schedule</span><span class="o">=</span><span class="s2">&quot;0 * * * *&quot;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">grid_data</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Step-4:-Creating-Decision-units-for-the-problem-statement:">
+<h2>Step 4: Creating Decision units for the problem statement:<a class="headerlink" href="#Step-4:-Creating-Decision-units-for-the-problem-statement:" title="Permalink to this heading">#</a></h2>
+<p>Decision units are built based on the entities and contracts associated with a particular producer. Contracts define the flow of energy between 2 entities in the framework. We use a graph representation of entities as nodes and contracts as edges to identify decision units. A decision unit generates critical information on the schedule and the associated actions based on the included contracts/entities.</p>
+<p>Here, for this scenario, contracts are between the grid and the batteries installed near to the consumer, and the decision unit is built on top of it(see line 5 in the cell below). The contract is bidirection since power can flow both ways between a battery and a grid</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">contract</span> <span class="o">=</span> <span class="n">Contract</span><span class="p">(</span>
+    <span class="n">contractor</span> <span class="o">=</span> <span class="n">battery</span><span class="p">,</span>
+    <span class="n">contractee</span> <span class="o">=</span> <span class="n">grid</span><span class="p">,</span>
+    <span class="n">bidirectional</span> <span class="o">=</span>  <span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">du</span> <span class="o">=</span> <span class="n">DecisionUnit</span><span class="p">(</span><span class="n">contracts</span> <span class="o">=</span> <span class="p">[</span><span class="n">contract</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Step-5:-Function-to-Store-Results-in-a-dataframe-and-then-later-to-csv-format:">
+<h2>Step 5: Function to Store Results in a dataframe and then later to csv format:<a class="headerlink" href="#Step-5:-Function-to-Store-Results-in-a-dataframe-and-then-later-to-csv-format:" title="Permalink to this heading">#</a></h2>
+<p>Dump results into dataframes for later visualizations - - battery_soc_list: stores the current list of state of charge values for MILP - action_list : list of actions: charging/discharging/idle taken by the optimizer for a step - power_list: power associated with the action taken by the optimization algorithm - carbon_intensity_list: Actual carbon emission intensity values in gCO2eq/kWh - price_intensity_list: Actual price values in $ - reward_list: List of rewards received for taking actions in
+particular states - carbon_savings_forecast_list : Carbon savings done due to the action taken for a particular state at a certain timestamp - price_savings_forecast_list : Price savings due to the action taken for a particular state at a certain timestamp</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_dataframe</span><span class="p">(</span>
+    <span class="n">battery_soc_list</span><span class="p">,</span>
+    <span class="n">action_list</span><span class="p">,</span>
+    <span class="n">power_list</span><span class="p">,</span>
+    <span class="n">carbon_intensity_list</span><span class="p">,</span>
+    <span class="n">price_intensity_list</span><span class="p">,</span>
+    <span class="n">carbon_savings_list</span><span class="p">,</span>
+    <span class="n">price_savings_list</span><span class="p">,</span>
+    <span class="n">reward_list</span><span class="p">,</span>
+    <span class="n">carbon_savings_forecast_list</span><span class="p">,</span>
+    <span class="n">price_savings_forecast_list</span>
+<span class="p">):</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;Current_SOC&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">battery_soc_list</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;Predicted_Action&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">action_list</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;Predicted_Power_Action&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">power_list</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;Carbon_emissions&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">carbon_intensity_list</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;Carbon_savings&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">carbon_savings_list</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;Forecast_Carbon_savings&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">carbon_savings_forecast_list</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;Price_emissions&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">price_intensity_list</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;Price_savings&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">price_savings_list</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;Forecast_Price_savings&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">price_savings_forecast_list</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;Reward&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">reward_list</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="c1">#store the results into results folder</span>
+<span class="n">country</span> <span class="o">=</span> <span class="s2">&quot;UK&quot;</span> <span class="c1"># change it to the respective country name based on the grid&#39;s price/emissions data</span>
+<span class="nb">dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">dir_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;results_</span><span class="si">{</span><span class="n">country</span><span class="si">}</span><span class="s1">/&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">dir_path</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">dir_path</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Step-6:-Instantiate-the-environment-object-from-the-scenario-specific-environment-class">
+<h2>Step 6: Instantiate the environment object from the scenario specific environment class<a class="headerlink" href="#Step-6:-Instantiate-the-environment-object-from-the-scenario-specific-environment-class" title="Permalink to this heading">#</a></h2>
+<p>Environment forms a key layer in the EnCortex architecture to provide data and state information (state space) from entities that are needed to make a decision (action space) and a central point to orchestrate all the required decisions based on the schedule.</p>
+<p>EnCortex supports some of the common scenario based environments which can be easily extended to other similar custom scenarios by the energy operators. BatteryArbitrageScenarioEnv is one of the supported environments by EnCortex. Check here to know more details. The step_time_difference is another user-configurable parameter which says about the optimization step to be taken. For MILP, the optimum result comes when the step time difference is set similar to the timestep parameter. For
+Reinforcement Learning, it is a mandate to set it equal to the timestep else the action size increases which leads to erroneous learning by the agents.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Instantiate an environment object from the scenario specific environment class</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="k">if</span> <span class="n">milp_flag</span><span class="p">:</span>
+        <span class="n">env</span> <span class="o">=</span> <span class="n">BatteryArbitrageMILPEnv</span><span class="p">(</span>
+                <span class="n">decision_unit</span><span class="o">=</span> <span class="n">du</span><span class="p">,</span>
+                <span class="n">start_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s2">&quot;2020-01-01T00:00&quot;</span><span class="p">),</span>
+                <span class="n">seed</span> <span class="o">=</span> <span class="n">seed</span><span class="p">,</span>
+                <span class="n">callbacks</span><span class="o">=</span><span class="p">[],</span>
+                <span class="n">omega</span><span class="o">=</span> <span class="n">omega</span><span class="p">,</span>
+        <span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+        <span class="n">env</span> <span class="o">=</span> <span class="n">BatteryArbitrageRLEnv</span><span class="p">(</span>
+                <span class="n">decision_unit</span> <span class="o">=</span> <span class="n">du</span><span class="p">,</span>
+                <span class="n">start_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s2">&quot;2020-01-01T00:00&quot;</span><span class="p">),</span>
+                <span class="n">seed</span> <span class="o">=</span> <span class="n">seed</span><span class="p">,</span>
+                <span class="n">callbacks</span><span class="o">=</span><span class="p">[],</span>
+                <span class="n">action_window</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">),</span>
+                <span class="n">future_window</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">)</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Step-7:-Training-Pipeline-for-the-algorithms:">
+<h2>Step 7: Training Pipeline for the algorithms:<a class="headerlink" href="#Step-7:-Training-Pipeline-for-the-algorithms:" title="Permalink to this heading">#</a></h2>
+<p>Training is only for RL and testing code can be split into 3 sections of RL, MILP, SA.</p>
+<p>First of all, set the seed. This helps reproucing the results in the same machine, but still across different machine it does not guarantee to produce same result. The extreme noisy learning pattern, large amount of hyperparameter tuning, unpredictability and unexplainability of the RL agents add to the demerits of the algorithm.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#setting a seed for reproducibility of experiment results:</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">seed_everything</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Training in RL begins here, where we instantiate the DRLBattOpt based optimizer object and then save the best trained model to automatically created model_checkpoints folder for later usage.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Training Pipeline for RL:</span>
+<span class="sd">The code in this cell helps to train a RL model, but there could be issues in trying it out in the jupyter cell.</span>
+<span class="sd">Hence we also provide a separate training script namely training_RL.py, try that out if the jupyter cell does not work.</span>
+
+<span class="sd">During testing just the load the model saved from the training script</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">milp_flag</span><span class="p">):</span>
+    <span class="n">opt</span> <span class="o">=</span> <span class="n">EnCortexRLOptimizer</span><span class="p">(</span>
+        <span class="n">env</span> <span class="o">=</span> <span class="n">env</span><span class="p">,</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;dqn&quot;</span><span class="p">,</span>
+        <span class="n">policy</span> <span class="o">=</span> <span class="s2">&quot;MlpPolicy&quot;</span><span class="p">,</span>
+        <span class="n">seed</span> <span class="o">=</span> <span class="n">seed</span><span class="p">,</span>
+        <span class="n">enable_checkpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">target_update_interval</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;...... Starting Training .......&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;model_checkpoints/best_model.zip&quot;</span><span class="p">):</span>
+        <span class="n">opt</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">log_interval</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">opt</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;model_checkpoints&#39;</span><span class="p">,</span> <span class="s1">&#39;best_model.zip&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------Training Completed--------&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Mixed integer linear programming (MILP) and Simulated Annealing does not require training, hence the code for the MILP and SA section is shown directly while testing</p>
+</section>
+<section id="Step-8:-Testing-Pipeline-for-the-algorithms-:">
+<h2>Step 8: Testing Pipeline for the algorithms :<a class="headerlink" href="#Step-8:-Testing-Pipeline-for-the-algorithms-:" title="Permalink to this heading">#</a></h2>
+<section id="Load-Test-Data-and-Reinitialization:">
+<h3>Load Test Data and Reinitialization:<a class="headerlink" href="#Load-Test-Data-and-Reinitialization:" title="Permalink to this heading">#</a></h3>
+<p>Now, we need to reinitiailize the grid object with the test dataset and change the respective decision unit contracts from the environment, so as to make the environment test ready!</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#read test data having emissions &amp; prices values of dataset</span>
+<span class="c1">#load forecast and actual data for testing/inference</span>
+<span class="n">forecast_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/home/akshayn/main_encortex/data/UK_data_2020_meanprev_shortened.csv&quot;</span><span class="p">)</span>
+<span class="n">actual_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/home/akshayn/main_encortex/data/UK_data_2020_actuals_shortened.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># forecast_df = UKPricesEmissionsData(train=False, forecasts=True)</span>
+<span class="c1"># actual_df = UKPricesEmissionsData(train=False, forecasts=False)</span>
+
+<span class="n">forecast_df</span><span class="p">[[</span><span class="s1">&#39;emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;prices&#39;</span><span class="p">]]</span>  <span class="o">=</span> <span class="n">forecast_df</span><span class="p">[[</span><span class="s1">&#39;emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;prices&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">actual_df</span><span class="p">[[</span><span class="s1">&#39;emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;prices&#39;</span><span class="p">]]</span>  <span class="o">=</span> <span class="n">actual_df</span><span class="p">[[</span><span class="s1">&#39;emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;prices&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="c1">#parse the test data to the MarketData backend</span>
+<span class="n">grid_data</span> <span class="o">=</span> <span class="n">MarketData</span><span class="o">.</span><span class="n">parse_backend</span><span class="p">(</span>
+    <span class="mi">3</span><span class="p">,</span>
+    <span class="kc">True</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">),</span>
+    <span class="n">price_forecast</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">forecast_df</span><span class="p">[</span><span class="s1">&#39;prices&#39;</span><span class="p">],</span> <span class="n">forecast_df</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">price_actual</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">actual_df</span><span class="p">[</span><span class="s1">&#39;prices&#39;</span><span class="p">],</span> <span class="n">actual_df</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">carbon_emissions_forecast</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">forecast_df</span><span class="p">[</span><span class="s1">&#39;emissions&#39;</span><span class="p">],</span> <span class="n">forecast_df</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">carbon_emissions_actual</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">actual_df</span><span class="p">[</span><span class="s1">&#39;emissions&#39;</span><span class="p">],</span> <span class="n">actual_df</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">carbon_prices_forecast</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">forecast_df</span><span class="p">[</span><span class="s1">&#39;prices&#39;</span><span class="p">],</span> <span class="n">forecast_df</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">carbon_prices_actual</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">actual_df</span><span class="p">[</span><span class="s1">&#39;prices&#39;</span><span class="p">],</span> <span class="n">actual_df</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">volume_forecast</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="n">volume_actual</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">grid</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">grid_data</span>
+</pre></div>
+</div>
+</div>
+<ol class="arabic simple">
+<li><p>The following code snippet generates results on the training dataset using MILP optimizer.</p></li>
+</ol>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate test results for MILP</span>
+<span class="c1"># Code for MILP to generate results on the training dataset:</span>
+<span class="k">if</span> <span class="n">milp_flag</span><span class="p">:</span>
+    <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s2">&quot;2020-01-01T00:00&quot;</span><span class="p">)</span>
+    <span class="n">opt</span> <span class="o">=</span> <span class="n">MILPOptimizer</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+    <span class="c1"># Run the optimizer on the environment</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+        <span class="n">obj</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">done</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+
+    <span class="n">battery_log</span> <span class="o">=</span> <span class="n">battery</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">action_log</span>
+    <span class="n">environment_log</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">get_log</span><span class="p">()</span>
+
+    <span class="n">current_socs</span> <span class="o">=</span><span class="p">[]</span>
+    <span class="n">predicted_actions</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">predicted_actions_power</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">battery_log</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">v</span><span class="p">[</span><span class="s1">&#39;current_soc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;current_soc&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="n">current_socs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;current_soc&#39;</span><span class="p">])</span>
+        <span class="n">predicted_actions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;action&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">predicted_actions_power</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;power&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="n">create_dataframe</span><span class="p">(</span><span class="n">current_socs</span><span class="p">,</span> <span class="n">predicted_actions</span><span class="p">,</span> <span class="n">predicted_actions_power</span><span class="p">,</span> <span class="n">environment_log</span><span class="p">[</span><span class="s1">&#39;Carbon Emission&#39;</span><span class="p">],</span> <span class="n">environment_log</span><span class="p">[</span><span class="s1">&#39;Price&#39;</span><span class="p">],</span> <span class="n">environment_log</span><span class="p">[</span><span class="s1">&#39;Reward Carbon&#39;</span><span class="p">],</span> <span class="n">environment_log</span><span class="p">[</span><span class="s1">&#39;Reward Cost&#39;</span><span class="p">],</span> <span class="n">environment_log</span><span class="p">[</span><span class="s1">&#39;Reward&#39;</span><span class="p">],</span> <span class="n">environment_log</span><span class="p">[</span><span class="s1">&#39;Reward Carbon&#39;</span><span class="p">],</span> <span class="n">environment_log</span><span class="p">[</span><span class="s1">&#39;Reward&#39;</span><span class="p">])</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">dir_path</span><span class="o">+</span><span class="s2">&quot;testdf_MILP.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1">#@TODO MR: Saving stuff, not sure how to handle</span>
+</pre></div>
+</div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Next, we load the saved trained DRL model to generate inference results on the same training dataset.</p></li>
+</ol>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate results for RL test data</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">milp_flag</span><span class="p">):</span>
+
+    <span class="c1">#load the model first, if trained from the python script training_RL.py</span>
+    <span class="n">opt</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;model_checkpoints/&#39;</span><span class="p">,</span> <span class="s1">&#39;best_model&#39;</span><span class="p">)</span>
+    <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s2">&quot;2020-01-01T00:00&quot;</span><span class="p">)</span>
+    <span class="n">env</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span>
+    <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+    <span class="c1"># Run the optimizer on the environment</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+        <span class="n">obj</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">done</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="Step-9:-Result-Visualization:">
+<h2>Step 9: Result Visualization:<a class="headerlink" href="#Step-9:-Result-Visualization:" title="Permalink to this heading">#</a></h2>
+<p>Instantiate the visualization object from the environment by passing 2 arguments: - results_folder : The local folder name, where all the final results are stored - optimizers : A list of optimizers for which results are present in the results_folder</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">environment_log</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vi</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">visualize</span><span class="p">(</span><span class="s1">&#39;/home/akshayn/main_encortex/docs/notebooks/results_UK/&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;MILP&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<p>Then, after running the following cell, provide the following as input to visualize the plots: - A multiselect option to choose between optimizers, so as to compare the final savings between two or more of them. To multiselect pressShift+ leftClick. - Choose between training/test file options from the radio buttons provided to visualize the schedules generated for each of the optimizers running on the user-input option of train/test file. - From the slider, select a day for which the battery
+schedules are to be shown - Click on the Plot button to plot the results</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="n">menu</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">SelectMultiple</span><span class="p">(</span>
+       <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MILP&#39;</span><span class="p">,</span> <span class="s1">&#39;DRL&#39;</span><span class="p">,</span> <span class="s1">&#39;SA&#39;</span><span class="p">],</span>
+       <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MILP&#39;</span><span class="p">],</span>
+       <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Optimizer:&#39;</span><span class="p">,</span>
+       <span class="n">disabled</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">rdbutton</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">RadioButtons</span><span class="p">(</span>
+            <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Training File&#39;</span><span class="p">,</span> <span class="s1">&#39;Test File&#39;</span><span class="p">],</span>
+            <span class="n">value</span><span class="o">=</span><span class="s1">&#39;Test File&#39;</span><span class="p">,</span>
+            <span class="n">layout</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;max-content&#39;</span><span class="p">},</span>
+            <span class="n">description</span><span class="o">=</span><span class="s1">&#39;File:&#39;</span><span class="p">,</span>
+            <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+
+<span class="n">env</span><span class="o">.</span><span class="n">horizon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">)</span>
+<span class="n">slider</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span>
+                <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="nb">max</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">vi</span><span class="o">.</span><span class="n">tr_files</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">menu</span><span class="o">.</span><span class="n">value</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">horizon</span><span class="o">/</span><span class="n">env</span><span class="o">.</span><span class="n">timestep</span><span class="p">)),</span>
+                <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Day:&quot;</span><span class="p">)</span>
+
+<span class="n">button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Plot&#39;</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">on_button_clicked</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">out</span><span class="p">:</span>
+        <span class="n">clear_output</span><span class="p">()</span>
+        <span class="n">vi</span><span class="o">.</span><span class="n">initial_plots</span><span class="p">(</span><span class="n">menu</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">rdbutton</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span><span class="s2">&quot;Test File&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">slider</span><span class="o">.</span><span class="n">value</span> <span class="o">&gt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">vi</span><span class="o">.</span><span class="n">te_files</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">menu</span><span class="o">.</span><span class="n">value</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">get_schedule_timestep</span><span class="p">()</span><span class="o">/</span><span class="n">env</span><span class="o">.</span><span class="n">timestep</span><span class="p">))</span> <span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please choose a day lesser than Day 365, since its end of the test dataset&quot;</span><span class="p">)</span>
+                <span class="k">return</span>
+
+        <span class="n">train_data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">vi</span><span class="o">.</span><span class="n">tr_files</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">test_data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">vi</span><span class="o">.</span><span class="n">te_files</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">approach</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">menu</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">approach</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">approach</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span><span class="s2">&quot;MILP&quot;</span><span class="p">:</span>
+                <span class="n">train_data</span><span class="o">=</span><span class="n">train_data</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">test_data</span><span class="o">=</span><span class="n">test_data</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">approach</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;DRL&quot;</span><span class="p">:</span>
+                <span class="n">train_data</span><span class="o">=</span><span class="n">train_data</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">test_data</span><span class="o">=</span><span class="n">test_data</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+        <span class="k">if</span> <span class="n">rdbutton</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="s1">&#39;Training File&#39;</span><span class="p">:</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Results for the Day </span><span class="si">{</span><span class="n">slider</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s1"> of UK Data&#39;</span>
+            <span class="n">vi</span><span class="o">.</span><span class="n">plot_results</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">slider</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">get_schedule_timestep</span><span class="p">()</span><span class="o">/</span><span class="n">env</span><span class="o">.</span><span class="n">timestep</span><span class="p">),</span> <span class="n">title</span><span class="p">,</span> <span class="n">approach</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Results for the Day </span><span class="si">{</span><span class="n">slider</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s1"> of UK Data&#39;</span>
+            <span class="n">vi</span><span class="o">.</span><span class="n">plot_results</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">slider</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">get_schedule_timestep</span><span class="p">()</span><span class="o">/</span><span class="n">env</span><span class="o">.</span><span class="n">timestep</span><span class="p">),</span> <span class="n">title</span><span class="p">,</span> <span class="n">approach</span><span class="p">)</span>
+
+<span class="n">button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">on_button_clicked</span><span class="p">)</span>
+<span class="n">info</span> <span class="o">=</span> <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;# Savings over the whole dataset</span>
+<span class="s2">- No. of days in the train dataset : </span><span class="si">{}</span>
+<span class="s2">- No. of days in the test dataset : </span><span class="si">{}</span>
+<span class="se">\n</span>
+<span class="se">\n</span>
+<span class="s2">Choose an Optimizer:&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">vi</span><span class="o">.</span><span class="n">tr_files</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">menu</span><span class="o">.</span><span class="n">value</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">get_schedule_timestep</span><span class="p">()</span><span class="o">/</span><span class="n">env</span><span class="o">.</span><span class="n">timestep</span><span class="p">)),</span><span class="nb">int</span><span class="p">(</span><span class="n">vi</span><span class="o">.</span><span class="n">te_files</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">menu</span><span class="o">.</span><span class="n">value</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">get_schedule_timestep</span><span class="p">()</span><span class="o">/</span><span class="n">env</span><span class="o">.</span><span class="n">timestep</span><span class="p">)))))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">menu</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\n</span><span class="s1"> </span><span class="se">\n</span><span class="s1">Choose the file to view results:&#39;&#39;&#39;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">rdbutton</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\n</span><span class="s1"> </span><span class="se">\n</span><span class="s1">Choose a day for checking schedules:&#39;&#39;&#39;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">slider</span><span class="p">,</span> <span class="n">button</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The initial bar charts provide a “Total Savings” comparison between train and test files along with multiple optimizers if selected. The left hand side bar plots denote the overall cost savings, whereas the right side plots signify the carbon savings.</p>
+<p>The plot below gives a clear indication of how the state of charge of the battery (green coloured line charts for multiple optimizers if selected) varies with the respective variations in Price (yellow plot) and carbon emissions (red plot). Based on the objective selected by the user, the price and carbon variations play a key role in deciding the charging and discharging schedules. For example, a common inference drawn from the schedules plot is when the prices are high, the battery discharges,
+whereas when the prices are low, the battery tends to charge from the utility grid, thus maximizing the profit for the consumer. Similar conclusion can be drawn for carbon arbitrage as well.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"00677fc956dd4768a26f863440452b55": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "IntSliderModel", "state": {"description": "Day:", "layout": "IPY_MODEL_6c0f90c93ddd40318e9004d4251f865f", "max": 17472, "style": "IPY_MODEL_caabcb1cd70d40a88829976f7a1b2cbb"}}, "04b1cc3de94e40dcb4204cd490da9b29": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "SelectMultipleModel", "state": {"_options_labels": ["MILP", "DRL", "SA"], "description": "Optimizer:", "index": [0], "layout": "IPY_MODEL_6204e856ac6a49b3afb2689c6e4f3240", "rows": 5, "style": "IPY_MODEL_970759b2973c4fac9784eb336f12a476"}}, "069e8998a4824986b09e6cad8e84d1b2": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "10ec3fe1f69e4ae5bf52cd1ca69751ae": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "1c2cb83097f640d8a460ce43319a8d83": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "LabelModel", "state": {"layout": "IPY_MODEL_10ec3fe1f69e4ae5bf52cd1ca69751ae", "style": "IPY_MODEL_37c6af842611474f8db33e4bbde4e97f"}}, "1f6fe8897c0c46b288f384c76e3e8709": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"width": "max-content"}}, "275da07838c9425c889f94e8b974b684": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "292cb956949e4812aefdb7c349cd2d2c": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "2953cabed45145f0a011ffc557c0a6b9": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["Training File", "Test File"], "description": "File:", "index": 1, "layout": "IPY_MODEL_5db6efd48cd84acea070db32144d166a", "style": "IPY_MODEL_5c654e4e0fd64797abded51a39646e5b"}}, "2ebff0fc0071445abfcc54051d3addd5": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_a1e43c27d2b94ffcaa9b8456b1a12d6c"}}, "352840673c904c5db25bd89b013a4cb7": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_b8b874deb205477886add6aad093e0ba"}}, "37c6af842611474f8db33e4bbde4e97f": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "38e9378e174d445cae661b4834be23ec": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "IntSliderModel", "state": {"description": "Day:", "layout": "IPY_MODEL_e7fa4255abaf4e7eb20a6cd135bd8e23", "max": 728, "style": "IPY_MODEL_600e8b8c57e74a98b3aaa08c3b7d95ca"}}, "396ca4d74ed0409c8aefbb491d9698cc": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "4f5fd4a9c8e7419489fb1998b802f650": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "LabelModel", "state": {"layout": "IPY_MODEL_f401c4b059974bd8818497dda27d66fe", "style": "IPY_MODEL_d1273c2fc51e4617bcada13009545d60"}}, "5c654e4e0fd64797abded51a39646e5b": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "5db6efd48cd84acea070db32144d166a": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"width": "max-content"}}, "600e8b8c57e74a98b3aaa08c3b7d95ca": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "SliderStyleModel", "state": {"description_width": ""}}, "6204e856ac6a49b3afb2689c6e4f3240": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "6c0f90c93ddd40318e9004d4251f865f": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "7a5db3af26804531bc7692d4d6989c44": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "7d949c46c9c1492ebfa9fc228c778021": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "7e52695116be499aa99af9e324c1f1de": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"layout": "IPY_MODEL_9322cc8944bc4d82af6d540500f6222d", "max": 1, "style": "IPY_MODEL_275da07838c9425c889f94e8b974b684"}}, "7feeb515167b4f658a69eac59233ebda": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_4f5fd4a9c8e7419489fb1998b802f650", "IPY_MODEL_7e52695116be499aa99af9e324c1f1de"], "layout": "IPY_MODEL_f6ca293b1bea4b6185c00ffe726683db"}}, "80bdf76b63d54a81abf3d32c35558010": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "Plot", "layout": "IPY_MODEL_97f85af090df4bee9f17c2e1ae9c6ed5", "style": "IPY_MODEL_ea8c342fb2ff4324b8f489d072f3ac22"}}, "9322cc8944bc4d82af6d540500f6222d": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "94411342d60b40f19c4639be1f0cd8b5": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "SelectMultipleModel", "state": {"_options_labels": ["MILP", "DRL", "SA"], "description": "Optimizer:", "index": [0], "layout": "IPY_MODEL_292cb956949e4812aefdb7c349cd2d2c", "rows": 5, "style": "IPY_MODEL_7d949c46c9c1492ebfa9fc228c778021"}}, "970759b2973c4fac9784eb336f12a476": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "97f85af090df4bee9f17c2e1ae9c6ed5": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "993c631c5cd54e4ead9ff4d5c53f1aeb": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "Plot", "layout": "IPY_MODEL_7a5db3af26804531bc7692d4d6989c44", "style": "IPY_MODEL_b771ad18c1ad419199161b606cd96d94"}}, "a1e43c27d2b94ffcaa9b8456b1a12d6c": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "a71ca249c6e347ff8f768409e04b803b": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "b5ed348fe98e42169c15b071b80eba49": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_1c2cb83097f640d8a460ce43319a8d83", "IPY_MODEL_e30dd4f54adc4647ab80dcb555567c0d"], "layout": "IPY_MODEL_cb4af702085b42f28af362ffdea4c2ef"}}, "b771ad18c1ad419199161b606cd96d94": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "b8b874deb205477886add6aad093e0ba": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "caabcb1cd70d40a88829976f7a1b2cbb": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "SliderStyleModel", "state": {"description_width": ""}}, "cb4af702085b42f28af362ffdea4c2ef": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "cc025997bac5448f97684a454653037d": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["Training File", "Test File"], "description": "File:", "index": 1, "layout": "IPY_MODEL_1f6fe8897c0c46b288f384c76e3e8709", "style": "IPY_MODEL_069e8998a4824986b09e6cad8e84d1b2"}}, "d1273c2fc51e4617bcada13009545d60": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "e30dd4f54adc4647ab80dcb555567c0d": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"layout": "IPY_MODEL_396ca4d74ed0409c8aefbb491d9698cc", "max": 1, "style": "IPY_MODEL_a71ca249c6e347ff8f768409e04b803b"}}, "e7fa4255abaf4e7eb20a6cd135bd8e23": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "ea8c342fb2ff4324b8f489d072f3ac22": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "f401c4b059974bd8818497dda27d66fe": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "f6ca293b1bea4b6185c00ffe726683db": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}}, "version_major": 2, "version_minor": 0}
+</script></section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Brief-look-into-EnCortex-implementation-details">Brief look into EnCortex implementation details</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-1-:-Import-the-libraries:">Step 1 : Import the libraries:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-2:-Inputs-from-the-User">Step 2: Inputs from the User</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-3:-Instantiating-Objects-of-the-required-abstractions-from-the-framework:">Step 3: Instantiating Objects of the required abstractions from the framework:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-4:-Creating-Decision-units-for-the-problem-statement:">Step 4: Creating Decision units for the problem statement:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-5:-Function-to-Store-Results-in-a-dataframe-and-then-later-to-csv-format:">Step 5: Function to Store Results in a dataframe and then later to csv format:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-6:-Instantiate-the-environment-object-from-the-scenario-specific-environment-class">Step 6: Instantiate the environment object from the scenario specific environment class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-7:-Training-Pipeline-for-the-algorithms:">Step 7: Training Pipeline for the algorithms:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-8:-Testing-Pipeline-for-the-algorithms-:">Step 8: Testing Pipeline for the algorithms :</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Load-Test-Data-and-Reinitialization:">Load Test Data and Reinitialization:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-9:-Result-Visualization:">Step 9: Result Visualization:</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By EnCortex Team, Microsoft Research India
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023, Microsoft.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

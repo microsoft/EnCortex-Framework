@@ -1,0 +1,569 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>EnCortex Developer Basics &#8212; EnCortex Docs</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'algos/basics';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">EnCortex Docs</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/index.html">Introduction.</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/setup.html">Setup</a></li>
+
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/battery_arbitrage.html">Energy Arbitrage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/microgrid.html">MicroGrid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/configurations.html">Configurations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/index.html">Advanced</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/setup.html">AzureML Compute</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../advanced/run.html">Develop locally(Internal-use only)</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials_advanced/index.html">Tutorials(Advanced)</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials_advanced/energy_arbitrage.html">Energy Arbitrage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../features/index.html">EnCortex Features</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Developer Concepts</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../integration/index.html">Integrating with Azure</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../integration/application_insights.html">Azure Monitor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">Contributing</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/microsoft/EnCortex" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/algos/basics.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>EnCortex Developer Basics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#components">Components</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment">Environment</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rl-environment">RL Environment</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-unit">Decision Unit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entity">Entity</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#config">Config</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#action">Action</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contract">Contract</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schedule">Schedule</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizer">Optimizer</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="encortex-developer-basics">
+<h1>EnCortex Developer Basics<a class="headerlink" href="#encortex-developer-basics" title="Permalink to this heading">#</a></h1>
+<p>Each of the below pages cover various topics in the <code class="docutils literal notranslate"><span class="pre">EnCortex</span></code> framework.</p>
+<p><img alt="" src="../_images/encortex_broad_view.png" /></p>
+<section id="components">
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this heading">#</a></h2>
+<p>On a high level, a scenario consists of two main components: <strong>Environment</strong> and <strong>Optimizer</strong>. An Environment operates on an <em>individual Decision Unit</em> and an optimizer is tasked to sequentially optimize for an environment.</p>
+<section id="environment">
+<h3>Environment<a class="headerlink" href="#environment" title="Permalink to this heading">#</a></h3>
+<aside class="margin sidebar">
+<p class="sidebar-title"><strong>Background Knowledge</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We recommend familiarizing yourself with <a class="reference external" href="https://xiongpengnus.github.io/rsome/">RSOME</a> before moving onto understanding environments.</p>
+</div>
+</aside>
+<p>An environment is created by extending the EnCortex environment class and using the <a class="reference external" href="https://www.programiz.com/python-programming/decorator">decorator</a> <code class="docutils literal notranslate"><span class="pre">EnCortexEnv.register</span></code>, register your environment so that it is accessible throughout the framework as an additional supported environment. Based on how <code class="docutils literal notranslate"><span class="pre">EnCortex</span></code> is structured, we implement an environment by extending the <code class="docutils literal notranslate"><span class="pre">EnCortexEnv</span></code> class and build an <code class="docutils literal notranslate"><span class="pre">MILP</span> <span class="pre">Environment</span></code>. The following points cover what methods are important to be overridden:</p>
+<ol class="arabic simple">
+<li><p>Now, you need to <em>manually</em> implement the following methods to construct the whole environment.</p>
+<ol class="arabic simple">
+<li><p><span class="xref myst">get_objective_function</span> - Objective function is a function of state and variables. State is a dictionary containing data related to each entity between a certain time referenced by their ID.</p></li>
+<li><p><span class="xref myst">_check_decision_unit_constraints</span> - This function parses the decision unit object and checks if the decision unit is supported by the environment. This is an important step before registering the environment.</p></li>
+<li><p><span class="xref myst">_step</span> - This function dictates things that are necessary to execute an action, calculating rewards, penalties, etc.</p></li>
+</ol>
+</li>
+</ol>
+<p>For a much more detailed example, refer to <span class="xref myst">Battery Arbitrage MILP Environment</span> and refer to the comments for an detailed explanation.</p>
+<p>Depending on the algorithm, multiple environments must be implemented in order to fit to the algorithms offered within <code class="docutils literal notranslate"><span class="pre">EnCortex</span></code>. The <code class="docutils literal notranslate"><span class="pre">RL</span> <span class="pre">Environment</span></code> provides an example why it is necessary to implement a different algorithm.</p>
+<section id="rl-environment">
+<h4>RL Environment<a class="headerlink" href="#rl-environment" title="Permalink to this heading">#</a></h4>
+<aside class="margin sidebar">
+<p class="sidebar-title"><strong>Background Knowledge</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We recommend familiarizing yourself with some reinforcement learning terminology, algorithms and gym from <a class="reference external" href="https://spinningup.openai.com/en/latest/">here</a> before proceeding towards building RL based environments.</p>
+</div>
+</aside>
+<p>In this case, we take advantage of the fact that RL can be built on top of an MILP environment. To understand this better, let’s look at the objective function of the above scenario.</p>
+<div class="math notranslate nohighlight" id="equation-battery-arbitrage-objective-with-rl">
+<span class="eqno">(1)<a class="headerlink" href="#equation-battery-arbitrage-objective-with-rl" title="Permalink to this equation">#</a></span>\[min \Sigma_t P_t * V_t\]</div>
+<p>Here, if every charge decision is denoted by $C$ and every discharge decision is denoted by $D$, assuming we require $V_{charge}$ energy upon charging and supply $V_{discharging}$ upon discharging,</p>
+<div class="math notranslate nohighlight">
+\[V = C*V_{charge} + D*V_{discharge} (C+D==1 and C,D \in {0,1})\]</div>
+<p>To accommodate RL, we consider this as a discrete choice problem where 0 indicates charge, 1 indicates idle and 2 indicates discharge. Hence, the transformation from RL to MILP in this scenario is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">rl_action</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">C</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="mi">0</span> <span class="c1">#charge</span>
+<span class="k">elif</span> <span class="n">rl_action</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">C</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="c1">#idle</span>
+<span class="k">elif</span> <span class="n">rl_action</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="n">C</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="c1">#discharge</span>
+</pre></div>
+</div>
+<p>When these constraints are applied, the <code class="docutils literal notranslate"><span class="pre">gym.space</span></code> based action is transformed to MILP based constraints(see the <code class="docutils literal notranslate"><span class="pre">transform_variable</span></code> method in the <code class="docutils literal notranslate"><span class="pre">BatteryAction</span></code> class).</p>
+</section>
+</section>
+<section id="decision-unit">
+<h3>Decision Unit<a class="headerlink" href="#decision-unit" title="Permalink to this heading">#</a></h3>
+<p>A decision unit is a directed graph where each entity is a node on the graph and the contract between the nodes denotes the power flow and dictates the power balance equation. The decision unit object has many utility methods available to operate on the decision as a whole while also giving individual access to each of these components. The next few subsections cover this in-detail.</p>
+</section>
+<section id="entity">
+<h3>Entity<a class="headerlink" href="#entity" title="Permalink to this heading">#</a></h3>
+<p>An entity in the decision unit graph is a power component i.e it can be a Source(energy generating unit), a Battery(energy consumer/generating), a Consumer(energy consuming) or a Market(energy bidding) type of component. Each entity has a variable <em>volume</em> that denotes how much volume/energy flows at any given time until the next timestep. In EnCortex, the entity comprises of broadly 4 attributes: 1) Config, 2) Action, 3) Data and 4) Schedule. Depending upon the type of entity, there can be additional attributes present which are covered in their individual documentation.</p>
+<section id="config">
+<h4>Config<a class="headerlink" href="#config" title="Permalink to this heading">#</a></h4>
+<p>A dictionary containing the configuration of the entity. This attribute is used to maintain and access the state of the entity. This is used to save the state of the decision unit and load it dynamically whenever needed.</p>
+</section>
+<section id="action">
+<h4>Action<a class="headerlink" href="#action" title="Permalink to this heading">#</a></h4>
+<p>An action for an entity describes the behaviour of the entity at each timestep upon taking certain actions. These actions also account for entity level constraints and have a penalty function associated with each of the actions to penalize wrong/unsafe actions when training neural networks.</p>
+</section>
+</section>
+<section id="contract">
+<h3>Contract<a class="headerlink" href="#contract" title="Permalink to this heading">#</a></h3>
+<p>Contract now defines the terms of a contract between a contractor and a contractee. The default direction of volume is from a contractor to contractee, although it can be made biirectional using the argument <code class="docutils literal notranslate"><span class="pre">is_bidirectional</span></code> argument when initializing a contract. A contract can levy contractual-constraints on the variables. By default, the power balance equation is always maintained within <code class="docutils literal notranslate"><span class="pre">EnCortex</span></code> internally.</p>
+</section>
+<section id="schedule">
+<h3>Schedule<a class="headerlink" href="#schedule" title="Permalink to this heading">#</a></h3>
+<p>A schedule is represented using the Cron grammar to represent a timely schedule.</p>
+</section>
+<section id="optimizer">
+<h3>Optimizer<a class="headerlink" href="#optimizer" title="Permalink to this heading">#</a></h3>
+<p>The optimizer sequentially solves for the required variables given the environment. Note that the implementation structure for an MILP environment and an RL environment is significantly different because of the different structures.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Hello</span><a class="headerlink" href="#id1" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">a</span>
+<span class="linenos">2</span><span class="kn">import</span> <span class="nn">b</span>
+<span class="hll"><span class="linenos">3</span>
+</span><span class="hll"><span class="linenos">4</span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span><span class="linenos">5</span>    <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#components">Components</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment">Environment</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rl-environment">RL Environment</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-unit">Decision Unit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entity">Entity</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#config">Config</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#action">Action</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contract">Contract</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schedule">Schedule</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizer">Optimizer</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By EnCortex Team, Microsoft Research India
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023, Microsoft.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

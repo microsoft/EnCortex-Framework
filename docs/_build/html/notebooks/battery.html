@@ -1,0 +1,1148 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>EnCortex - Battery Arbitrage &#8212; EnCortex Docs</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/battery';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">EnCortex Docs</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/index.html">Introduction.</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/setup.html">Setup</a></li>
+
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/battery_arbitrage.html">Energy Arbitrage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/microgrid.html">MicroGrid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/configurations.html">Configurations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/index.html">Advanced</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/setup.html">AzureML Compute</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../advanced/run.html">Develop locally(Internal-use only)</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials_advanced/index.html">Tutorials(Advanced)</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials_advanced/energy_arbitrage.html">Energy Arbitrage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../features/index.html">EnCortex Features</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../algos/index.html">Developer Concepts</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../integration/index.html">Integrating with Azure</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../integration/application_insights.html">Azure Monitor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">Contributing</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/microsoft/EnCortex" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/battery.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>EnCortex - Battery Arbitrage</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Inputs-from-User:">Inputs from User:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Instantiating-components-from-the-framework:">Instantiating components from the framework:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Creating-Decision-units-for-the-problem-statement:">Creating Decision units for the problem statement:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Function-to-Store-Results-in-a-dataframe-and-then-later-to-csv-format:">Function to Store Results in a dataframe and then later to csv format:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Training-Pipeline-for-the-algorithms:">Training Pipeline for the algorithms:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Mixed-integer-linear-programming-(MILP)-does-not-require-training,-hence-the-code-for-the-MILP-section-is-shown-directly-while-testing">Mixed integer linear programming (MILP) does not require training, hence the code for the MILP section is shown directly while testing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Testing-Pipeline-for-the-algorithms-:">Testing Pipeline for the algorithms :</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Result-Visualization-through-Streamlit:">Result Visualization through Streamlit:</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="EnCortex---Battery-Arbitrage">
+<h1>EnCortex - Battery Arbitrage<a class="headerlink" href="#EnCortex---Battery-Arbitrage" title="Permalink to this heading">#</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import all the required general libraries</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+<span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">t</span>
+<span class="kn">import</span> <span class="nn">gym</span>
+<span class="kn">from</span> <span class="nn">gym</span> <span class="kn">import</span> <span class="n">spaces</span>
+<span class="kn">import</span> <span class="nn">pytorch_lightning</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">IPython.core.interactiveshell</span> <span class="kn">import</span> <span class="n">InteractiveShell</span>
+<span class="n">InteractiveShell</span><span class="o">.</span><span class="n">ast_node_interactivity</span><span class="o">=</span><span class="s2">&quot;all&quot;</span>
+
+<span class="c1">#import the encortex library and all the required dependencies</span>
+<span class="kn">from</span> <span class="nn">encortex.backend</span> <span class="kn">import</span> <span class="n">DFBackend</span>
+<span class="kn">from</span> <span class="nn">encortex.env</span> <span class="kn">import</span> <span class="n">EnCortexEnv</span>
+<span class="kn">from</span> <span class="nn">encortex.logger</span> <span class="kn">import</span> <span class="n">get_experiment_logger</span>
+<span class="kn">from</span> <span class="nn">encortex.utils.data_loaders</span> <span class="kn">import</span> <span class="n">load_data</span>
+<span class="kn">from</span> <span class="nn">encortex.data</span> <span class="kn">import</span> <span class="n">MarketData</span>
+<span class="kn">from</span> <span class="nn">encortex.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
+<span class="kn">from</span> <span class="nn">encortex.decision_unit</span> <span class="kn">import</span> <span class="n">DecisionUnit</span>
+<span class="kn">from</span> <span class="nn">encortex.grid</span> <span class="kn">import</span> <span class="n">Grid</span>
+<span class="kn">from</span> <span class="nn">encortex.sources</span> <span class="kn">import</span> <span class="n">Battery</span><span class="p">,</span> <span class="n">BatteryAction</span>
+
+<span class="kn">from</span> <span class="nn">dfdb</span> <span class="kn">import</span> <span class="n">create_in_memory_db</span>
+
+<span class="kn">from</span> <span class="nn">encortex.environments.battery_arbitrage_env</span> <span class="kn">import</span> <span class="n">BatteryArbitrageScenarioEnv</span>
+<span class="kn">from</span> <span class="nn">encortex.optimizers.battery_arbitrage_optimizer</span> <span class="kn">import</span> <span class="n">DRLBattOpt</span><span class="p">,</span> <span class="n">MILPBattOpt</span><span class="p">,</span> <span class="n">Optimizer</span>
+<span class="kn">from</span> <span class="nn">encortex.datasets.grid</span> <span class="kn">import</span> <span class="n">CaliforniaPricesEmissionsData</span><span class="p">,</span> <span class="n">UKPricesEmissionsData</span>
+</pre></div>
+</div>
+</div>
+<section id="Inputs-from-User:">
+<h2>Inputs from User:<a class="headerlink" href="#Inputs-from-User:" title="Permalink to this heading">#</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#specify the type of optimization to be used:</span>
+<span class="n">milp_flag</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1">#if False use RL</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ort&quot;</span><span class="p">]</span> <span class="c1">#the algorithm to be used</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#provide optimization weights for the objectives</span>
+<span class="n">weight_emission</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">weight_price</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">weight_degradation</span> <span class="o">=</span> <span class="mf">0.0</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">run experiments for the following battery configurations</span>
+<span class="sd">elements in the list denote different batteries/battery configurations to be used in the scenario together (here just 1 element indicating 1 battery being used)</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1">#the battery capacity (in kWh)</span>
+<span class="n">storage_capacity</span> <span class="o">=</span> <span class="p">[</span><span class="mf">10.</span><span class="p">]</span>
+
+<span class="c1">#here charging and discharging efficiency (in %) taken the same/ if different take it differently</span>
+<span class="n">efficiency</span><span class="o">=</span><span class="p">[</span><span class="mf">1.</span><span class="p">]</span>
+
+<span class="c1">#the maximum discharge (in %) percentage that can happen at a time, here 90%</span>
+<span class="n">depth_of_discharge</span> <span class="o">=</span> <span class="p">[</span><span class="mf">90.</span><span class="p">]</span>
+
+<span class="c1">#the minimum state of charge of the battery, below which the battery should not be explored</span>
+<span class="n">soc_minimum</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">]</span>
+
+<span class="c1">#battery decision time steps</span>
+<span class="n">timestep</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="s2">&quot;h&quot;</span><span class="p">)]</span>
+
+<span class="c1">#whether to have degradation model in place or not for the batteries</span>
+<span class="n">degradation_flag</span> <span class="o">=</span> <span class="n">weight_degradation</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+<span class="c1">#the battery capacity reduction percentage due to degradation, below which if capacity reduces due to overuse, battery does not stay at good optimal health</span>
+<span class="n">min_battery_capacity_factor</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">]</span>
+
+<span class="c1">#the battery replacement cost (in $/kWh)</span>
+<span class="n">battery_cost_per_kWh</span> <span class="o">=</span> <span class="p">[</span><span class="mf">200.</span><span class="p">]</span>
+
+<span class="c1">#after every charge-discharge cycles over a certain period, the battery capacity reduced by the reduction coefficienct</span>
+<span class="n">reduction_coefficient</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.99998</span><span class="p">]</span>
+
+<span class="c1"># the period after which battery degrades</span>
+<span class="n">degradation_period_in_days</span> <span class="o">=</span> <span class="p">[</span><span class="mf">7.</span><span class="p">]</span>
+
+<span class="c1">#battery actions</span>
+<span class="n">action</span> <span class="o">=</span> <span class="p">[</span><span class="n">BatteryAction</span><span class="p">(</span><span class="s2">&quot;CHARGE_IDLE_DISCHARGE&quot;</span><span class="p">,</span><span class="s2">&quot;actions of the battery&quot;</span><span class="p">,</span><span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="kc">True</span><span class="p">,)]</span>
+
+<span class="c1"># initial state of charge of the battery to run the test experiments</span>
+<span class="c1"># the flag initiates random initial state of charge of the battery during training runs/experiments to avoid overfitting</span>
+<span class="n">soc_initial</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">]</span>
+<span class="n">test_flag</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Instantiating-components-from-the-framework:">
+<h2>Instantiating components from the framework:<a class="headerlink" href="#Instantiating-components-from-the-framework:" title="Permalink to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">instantiate battery objects into a list based on the no. of batteries/elements provided in the list of configuration parameters</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">batteries</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">ele</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">storage_capacity</span><span class="p">)):</span>
+    <span class="n">battery</span> <span class="o">=</span> <span class="n">Battery</span><span class="p">(</span>
+        <span class="n">timestep</span><span class="o">=</span><span class="n">timestep</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Li-Ion Battery&quot;</span><span class="p">,</span>
+        <span class="nb">id</span><span class="o">=</span><span class="n">ele</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Li-Ion Battery&quot;</span><span class="p">,</span>
+        <span class="n">storage_capacity</span><span class="o">=</span><span class="n">storage_capacity</span><span class="p">[</span><span class="n">ele</span><span class="p">],</span>
+        <span class="n">charging_efficiency</span><span class="o">=</span><span class="n">efficiency</span><span class="p">[</span><span class="n">ele</span><span class="p">],</span>
+        <span class="n">discharging_efficiency</span><span class="o">=</span><span class="n">efficiency</span><span class="p">[</span><span class="n">ele</span><span class="p">],</span>
+        <span class="n">soc_initial</span><span class="o">=</span><span class="n">soc_initial</span><span class="p">[</span><span class="n">ele</span><span class="p">],</span>
+        <span class="n">depth_of_discharge</span><span class="o">=</span><span class="n">depth_of_discharge</span><span class="p">[</span><span class="n">ele</span><span class="p">],</span>
+        <span class="n">soc_minimum</span><span class="o">=</span><span class="n">soc_minimum</span><span class="p">[</span><span class="n">ele</span><span class="p">],</span>
+        <span class="n">degradation_flag</span><span class="o">=</span><span class="n">degradation_flag</span><span class="p">,</span>
+        <span class="n">min_battery_capacity_factor</span><span class="o">=</span><span class="n">min_battery_capacity_factor</span><span class="p">[</span><span class="n">ele</span><span class="p">],</span>
+        <span class="n">battery_cost_per_kWh</span><span class="o">=</span><span class="n">battery_cost_per_kWh</span><span class="p">[</span><span class="n">ele</span><span class="p">],</span>
+        <span class="n">reduction_coefficient</span><span class="o">=</span><span class="n">reduction_coefficient</span><span class="p">[</span><span class="n">ele</span><span class="p">],</span>
+        <span class="n">degradation_period</span><span class="o">=</span><span class="n">degradation_period_in_days</span><span class="p">[</span><span class="n">ele</span><span class="p">],</span>
+        <span class="n">test_flag</span><span class="o">=</span><span class="n">test_flag</span><span class="p">[</span><span class="n">ele</span><span class="p">],</span>
+        <span class="n">action</span><span class="o">=</span><span class="n">action</span><span class="p">[</span><span class="n">ele</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">batteries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">battery</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+22/07/06 13:19:10 WARN CSVHeaderChecker: CSV header does not conform to the schema.
+ Header: , forecast_carbon_emissions, forecast_prices, timestamps
+ Schema: _c0, forecast_carbon_emissions, forecast_prices, timestamps
+Expected: _c0 but found:
+CSV file: file:///home/rluser/vb_cortex/data/forecast_grid_data.csv
+22/07/06 13:19:10 WARN CSVHeaderChecker: CSV header does not conform to the schema.
+ Header: , actual_carbon_emissions, actual_prices, timestamps
+ Schema: _c0, actual_carbon_emissions, actual_prices, timestamps
+Expected: _c0 but found:
+CSV file: file:///home/rluser/vb_cortex/data/actual_grid_data.csv
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">training data is not required for MILP, if working on RL training data is required, read the data from the dataloader,</span>
+<span class="sd">parse it to the backend of MArketData and feed it to the Grid class to instantiate a Grid object for training</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">load forecast and actual data for training -</span>
+<span class="sd">The CaliforniaPricesEmissionsData takes in 3 user-specific arguments:</span>
+<span class="sd">    1. train: A flag saying whether training/test data to load</span>
+<span class="sd">    2. forecasts: A flag saying whether experiments are to be run on forecasts/actuals</span>
+<span class="sd">    3. forecast_type: A string specifyng the type of forecast:</span>
+<span class="sd">        a) noise : Adding noise to the actual values and treating that as forecasts</span>
+<span class="sd">        b) smoothing : Smoothing the actual values and using that as forecasts</span>
+<span class="sd">        c) yesterdays : assuming yesterday&#39;s actual data as forecasts for today&#39;s data</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">forecast_df</span> <span class="o">=</span> <span class="n">UKPricesEmissionsData</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">forecasts</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="p">)</span>
+<span class="n">actual_df</span> <span class="o">=</span> <span class="n">UKPricesEmissionsData</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">forecasts</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">forecast_df</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(),</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">actual_df</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="n">forecast_df</span><span class="o">.</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;prices&#39;</span><span class="p">]]</span>  <span class="o">=</span> <span class="n">forecast_df</span><span class="o">.</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;prices&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">actual_df</span><span class="o">.</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;prices&#39;</span><span class="p">]]</span>  <span class="o">=</span> <span class="n">actual_df</span><span class="o">.</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;prices&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="c1">#parse the training data to the MarketData backend</span>
+<span class="n">grid_data</span> <span class="o">=</span> <span class="n">MarketData</span><span class="o">.</span><span class="n">parse_backend</span><span class="p">(</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">storage_capacity</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="kc">True</span><span class="p">,</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">storage_capacity</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">storage_capacity</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">),</span>
+    <span class="n">price_forecast</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">forecast_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;prices&#39;</span><span class="p">],</span> <span class="n">forecast_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+
+    <span class="n">price_actual</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">actual_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;prices&#39;</span><span class="p">],</span> <span class="n">actual_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">carbon_emissions_forecast</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">forecast_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;emissions&#39;</span><span class="p">],</span> <span class="n">forecast_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">carbon_emissions_actual</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">actual_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;emissions&#39;</span><span class="p">],</span> <span class="n">actual_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">carbon_prices_forecast</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">forecast_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;prices&#39;</span><span class="p">],</span> <span class="n">forecast_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">carbon_prices_actual</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">actual_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;prices&#39;</span><span class="p">],</span> <span class="n">actual_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">volume_forecast</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="n">volume_actual</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1">#instantiate a training grid Object by feeding in the parse training data as an argument to the Grid class</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span>
+    <span class="n">timestep</span><span class="p">,</span>
+    <span class="s2">&quot;Grid&quot;</span><span class="p">,</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">storage_capacity</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;Simple Market as a Grid&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;*/5 * * * *&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">),</span>
+    <span class="n">grid_data</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/rluser/anaconda3/envs/encortex/lib/python3.8/site-packages/pytorch_lightning/loggers/wandb.py:347: UserWarning: There is a wandb run already in progress and newly created instances of `WandbLogger` will reuse this run. If this is not desired, call `wandb.finish()` before instantiating `WandbLogger`.
+  rank_zero_warn(
+</pre></div></div>
+</div>
+</section>
+<section id="Creating-Decision-units-for-the-problem-statement:">
+<h2>Creating Decision units for the problem statement:<a class="headerlink" href="#Creating-Decision-units-for-the-problem-statement:" title="Permalink to this heading">#</a></h2>
+<p>A <a class="reference external" href="../encortex/encortex.decision_unit.rst">decision unit</a></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Formulate the decision unit (both for training and testing) by creating contracts between the grid and the battery</span>
+<span class="k">def</span> <span class="nf">creating_decision_units</span><span class="p">(</span><span class="n">batteries</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">forecast_df</span><span class="p">):</span>
+    <span class="n">contracts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">battery</span> <span class="ow">in</span> <span class="n">batteries</span><span class="p">:</span>
+        <span class="n">contracts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Contract</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">battery</span><span class="p">))</span>
+    <span class="n">decision_unit</span> <span class="o">=</span> <span class="n">DecisionUnit</span><span class="p">(</span><span class="n">contracts</span><span class="p">)</span>
+    <span class="n">decision_unit</span><span class="o">.</span><span class="n">generate_schedule</span><span class="p">(</span>
+        <span class="n">current_reference_time</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">forecast_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">decision_unit</span>
+
+<span class="n">decision_unit</span> <span class="o">=</span> <span class="n">creating_decision_units</span><span class="p">(</span><span class="n">batteries</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">forecast_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Function-to-Store-Results-in-a-dataframe-and-then-later-to-csv-format:">
+<h2>Function to Store Results in a dataframe and then later to csv format:<a class="headerlink" href="#Function-to-Store-Results-in-a-dataframe-and-then-later-to-csv-format:" title="Permalink to this heading">#</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Dump results into dataframes for later visualizations -</span>
+<span class="sd">    1. battery_soc_list: stores the current list of state of charge values for MILP</span>
+<span class="sd">    2. action_list : list of actions: charging/discharging/idle taken by the optimizer for a step</span>
+<span class="sd">    3. power_list: power associated with the action taken by the optimization algorithm</span>
+<span class="sd">    4. carbon_intensity_list: Actual carbon emission intensity values in mTCO2eq/kWh</span>
+<span class="sd">    5. price_intensity_list: Actual price values in $</span>
+<span class="sd">    6. reward_list: List of rewards received for taking actions in particular states</span>
+<span class="sd">    7. carbon_savings_forecast_list : Carbon savings done due to the action taken for a particular state at a certain timestamp</span>
+<span class="sd">    8. price_savings_forecast_list : Price savings due to the action taken for a particular state at a certain timestamp</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">create_dataframe</span><span class="p">(</span>
+    <span class="n">battery_soc_list</span><span class="p">,</span>
+    <span class="n">action_list</span><span class="p">,</span>
+    <span class="n">power_list</span><span class="p">,</span>
+    <span class="n">carbon_intensity_list</span><span class="p">,</span>
+    <span class="n">price_intensity_list</span><span class="p">,</span>
+    <span class="n">carbon_savings_list</span><span class="p">,</span>
+    <span class="n">price_savings_list</span><span class="p">,</span>
+    <span class="n">reward_list</span><span class="p">,</span>
+    <span class="n">carbon_savings_forecast_list</span><span class="p">,</span>
+    <span class="n">price_savings_forecast_list</span>
+<span class="p">):</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;Current_SOC&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">battery_soc_list</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;Predicted_Action&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">action_list</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;Predicted_Power_Action&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">power_list</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;Carbon_emissions&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">carbon_intensity_list</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;Carbon_savings&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">carbon_savings_list</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;Forecast_Carbon_savings&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">carbon_savings_forecast_list</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;Price_emissions&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">price_intensity_list</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;Price_savings&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">price_savings_list</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;Forecast_Price_savings&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">price_savings_forecast_list</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;Reward&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">reward_list</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="c1">#store the results into results folder</span>
+<span class="nb">dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">dir_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="s1">&#39;results_UK_forecasts/&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">dir_path</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">dir_path</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Instantiate an environment object from the scenario specific environment class</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="k">if</span> <span class="n">milp_flag</span><span class="p">:</span>
+    <span class="n">step_time_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">step_time_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;h&quot;</span><span class="p">)</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">BatteryArbitrageScenarioEnv</span><span class="p">(</span>
+    <span class="n">decision_unit</span><span class="p">,</span>
+    <span class="n">start_time</span><span class="o">=</span><span class="n">forecast_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">timestep</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;h&quot;</span><span class="p">),</span>
+    <span class="n">step_time_difference</span><span class="o">=</span><span class="n">step_time_diff</span><span class="p">,</span>
+    <span class="n">horizon</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">),</span>
+    <span class="n">seed</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+    <span class="n">weight_emission</span><span class="o">=</span><span class="n">weight_emission</span><span class="p">,</span>
+    <span class="n">weight_degradation</span><span class="o">=</span><span class="n">weight_degradation</span><span class="p">,</span>
+    <span class="n">weight_price</span><span class="o">=</span><span class="n">weight_price</span><span class="p">,</span>
+    <span class="n">milp_flag</span><span class="o">=</span><span class="n">milp_flag</span><span class="p">,</span>
+    <span class="n">train_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">exp_logger</span><span class="o">=</span><span class="n">get_experiment_logger</span><span class="p">(</span><span class="s1">&#39;wandb&#39;</span><span class="p">),</span>
+    <span class="n">logging_interval</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+</section>
+<section id="Training-Pipeline-for-the-algorithms:">
+<h2>Training Pipeline for the algorithms:<a class="headerlink" href="#Training-Pipeline-for-the-algorithms:" title="Permalink to this heading">#</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#setting a seed for reproducibility of experiment results:</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">seed_everything</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="mi">40</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Training Pipeline for RL:</span>
+<span class="sd">The code in this cell helps to train a RL model, but there could be issues in trying it out in the jupyter cell.</span>
+<span class="sd">Hence we also provide a separate training script namely training_RL.py, try that out if the jupyter cell does not work.</span>
+
+<span class="sd">During testing just the load the model saved from the training script</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">milp_flag</span><span class="p">:</span>
+
+    <span class="c1">#instantiate an optimizer object based on the optimizer chosen, and create the model</span>
+    <span class="n">opt</span> <span class="o">=</span> <span class="n">DRLBattOpt</span><span class="p">(</span>
+        <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">,</span>
+        <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;...... Starting Training .......&quot;</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">opt</span><span class="p">(</span>
+        <span class="n">env</span><span class="p">,</span>
+        <span class="n">train_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------Training Completed--------&quot;</span><span class="p">)</span>
+
+    <span class="c1">#save the model into a folder</span>
+    <span class="nb">dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+    <span class="n">dir_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="s1">&#39;model_checkpoints/&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">dir_path</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">dir_path</span><span class="p">)</span>
+
+    <span class="n">opt</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">dir_path</span><span class="p">,</span> <span class="s2">&quot;Trained_RL_model&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<section id="Mixed-integer-linear-programming-(MILP)-does-not-require-training,-hence-the-code-for-the-MILP-section-is-shown-directly-while-testing">
+<h3>Mixed integer linear programming (MILP) does not require training, hence the code for the MILP section is shown directly while testing<a class="headerlink" href="#Mixed-integer-linear-programming-(MILP)-does-not-require-training,-hence-the-code-for-the-MILP-section-is-shown-directly-while-testing" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="Testing-Pipeline-for-the-algorithms-:">
+<h2>Testing Pipeline for the algorithms :<a class="headerlink" href="#Testing-Pipeline-for-the-algorithms-:" title="Permalink to this heading">#</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#The test pipeline:</span>
+<span class="k">def</span> <span class="nf">testing</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="n">BatteryArbitrageScenarioEnv</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="n">Optimizer</span><span class="p">,</span> <span class="n">milp_flag</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+
+    <span class="c1">#for logging results into csv files</span>
+    <span class="n">carbon_intensity_list</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">price_intensity_list</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">battery_soc_list</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">action_list</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">power_list</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">reward_list</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">carbon_savings_list</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">price_savings_list</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">carbon_savings_forecast_list</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">price_savings_forecast_list</span><span class="o">=</span><span class="p">[]</span>
+
+    <span class="c1">#For testing initiate the battery with 50% charge always (initial state of charge of the battery during test experiments : 0.5)</span>
+    <span class="k">for</span> <span class="n">batt</span> <span class="ow">in</span> <span class="n">env</span><span class="o">.</span><span class="n">decision_unit</span><span class="o">.</span><span class="n">storage_entities</span><span class="p">:</span>
+        <span class="n">batt</span><span class="p">:</span> <span class="n">Battery</span>
+        <span class="n">batt</span><span class="o">.</span><span class="n">current_soc</span> <span class="o">=</span> <span class="mf">0.5</span>
+        <span class="n">batt</span><span class="o">.</span><span class="n">test</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1">#Reset the environment in the beginning and get the state values</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+    <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">net_reward</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">steps</span><span class="o">=</span><span class="mi">0</span>
+
+    <span class="c1">#run the episode unless done</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------------------------------------------------------&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;State: &quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">state</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Step no : &quot;</span><span class="p">,</span> <span class="n">steps</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Battery SOC : &quot;</span><span class="p">,</span> <span class="n">env</span><span class="o">.</span><span class="n">decision_unit</span><span class="o">.</span><span class="n">storage_entities</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">current_soc</span><span class="p">)</span>
+        <span class="c1">#storing the actual values of emissions &amp; prices in the list for logging purpose</span>
+        <span class="k">for</span> <span class="n">grid</span> <span class="ow">in</span> <span class="n">env</span><span class="o">.</span><span class="n">decision_unit</span><span class="o">.</span><span class="n">markets</span><span class="p">:</span>
+            <span class="n">grid</span><span class="p">:</span><span class="n">Grid</span>
+            <span class="n">carbon_intensity_list</span><span class="o">+=</span><span class="nb">list</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">carbon_emissions_actual</span><span class="p">[</span><span class="n">env</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">env</span><span class="o">.</span><span class="n">time</span><span class="o">+</span><span class="n">env</span><span class="o">.</span><span class="n">step_time_difference</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+            <span class="n">price_intensity_list</span><span class="o">+=</span><span class="nb">list</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">carbon_prices_actual</span><span class="p">[</span><span class="n">env</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">env</span><span class="o">.</span><span class="n">time</span><span class="o">+</span><span class="n">env</span><span class="o">.</span><span class="n">step_time_difference</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+
+        <span class="c1">#storing the state of charge of the batteries in a list for logging purpose:</span>
+        <span class="k">for</span> <span class="n">batt</span> <span class="ow">in</span> <span class="n">env</span><span class="o">.</span><span class="n">decision_unit</span><span class="o">.</span><span class="n">storage_entities</span><span class="p">:</span>
+            <span class="n">batt</span><span class="p">:</span> <span class="n">Battery</span>
+            <span class="n">battery_soc_list</span><span class="o">+=</span><span class="p">[</span><span class="n">batt</span><span class="o">.</span><span class="n">current_soc</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">milp_flag</span><span class="p">:</span>
+            <span class="c1">#In MILP first the values are passed as a decision variable/ Affine Expression - the train flag signifies that</span>
+            <span class="n">env</span><span class="o">.</span><span class="n">train_flag</span> <span class="o">=</span> <span class="kc">True</span>
+
+            <span class="c1">#model called to solve the objective defined in the environment based on the constraints from the framework abstractions</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">opt</span><span class="p">(</span><span class="n">train_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">battery_actions</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+
+            <span class="c1">#get the numeric action values as the predicted action results and hence switch off the train flag</span>
+            <span class="n">env</span><span class="o">.</span><span class="n">train_flag</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="k">for</span> <span class="n">batt</span> <span class="ow">in</span> <span class="n">env</span><span class="o">.</span><span class="n">decision_unit</span><span class="o">.</span><span class="n">storage_entities</span><span class="p">:</span>
+                <span class="n">batt</span><span class="p">:</span> <span class="n">Battery</span>
+                <span class="n">action_list</span><span class="o">+=</span><span class="nb">list</span><span class="p">(</span><span class="n">battery_actions</span><span class="p">[</span><span class="n">batt</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="s1">&#39;Dt&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">battery_actions</span><span class="p">[</span><span class="n">batt</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="s1">&#39;Ct&#39;</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">power_list</span><span class="o">+=</span><span class="nb">list</span><span class="p">((</span><span class="n">battery_actions</span><span class="p">[</span><span class="n">batt</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="s1">&#39;Dt&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">battery_actions</span><span class="p">[</span><span class="n">batt</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="s1">&#39;Ct&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">batt</span><span class="o">.</span><span class="n">max_discharging_power</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1">#In RL, since training is already done, just load the model to predict the actions based on the current state</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">state</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="c1">#transform the actions similar to the environment-specific action transformation for uniformity</span>
+            <span class="n">battery_actions</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">batt</span> <span class="ow">in</span> <span class="n">env</span><span class="o">.</span><span class="n">decision_unit</span><span class="o">.</span><span class="n">storage_entities</span><span class="p">:</span>
+
+                <span class="c1">#storing the power values into a list for logging purpose</span>
+                <span class="n">power_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">action</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">batt</span><span class="o">.</span><span class="n">max_discharging_power</span><span class="p">)</span>
+
+                <span class="c1"># battery_actions[batt.id] = {}</span>
+                <span class="c1"># battery_actions[batt.id][&quot;time&quot;] = env.time</span>
+                <span class="c1"># battery_actions[batt.id][&quot;action&quot;] = action</span>
+
+            <span class="c1"># storing actions taken into a list for logging purpose:</span>
+            <span class="n">action_list</span><span class="o">+=</span><span class="p">[</span><span class="n">action</span><span class="p">]</span>
+            <span class="n">battery_actions</span> <span class="o">=</span> <span class="n">action</span>
+
+        <span class="c1">#Step to the next_state, based on the actions predicted by the optimizers, getting a reward and indicating whether the episode completed or not</span>
+        <span class="c1"># print(&quot;Battery Actions:&quot;, battery_actions)</span>
+        <span class="n">next_state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">battery_actions</span><span class="p">)</span>
+
+        <span class="c1">#storing the rest of the state of charges in milp of the batteries in a list for logging purpose:</span>
+        <span class="k">if</span> <span class="n">milp_flag</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">batt</span> <span class="ow">in</span> <span class="n">env</span><span class="o">.</span><span class="n">decision_unit</span><span class="o">.</span><span class="n">storage_entities</span><span class="p">:</span>
+                <span class="n">batt</span><span class="p">:</span> <span class="n">Battery</span>
+                <span class="n">battery_soc_list</span><span class="o">+=</span><span class="n">info</span><span class="p">[</span><span class="n">batt</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="s1">&#39;soc_list&#39;</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1">#storing reward values in a list for logging purpose:</span>
+        <span class="k">if</span> <span class="n">milp_flag</span><span class="p">:</span>
+            <span class="n">reward_list</span><span class="o">+=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">step_time_difference</span> <span class="o">/</span> <span class="n">env</span><span class="o">.</span><span class="n">timestep</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">reward_list</span><span class="o">+=</span><span class="p">[</span><span class="n">reward</span><span class="p">]</span>
+
+        <span class="n">net_reward</span> <span class="o">+=</span> <span class="n">reward</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">next_state</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total reward&quot;</span><span class="p">,</span> <span class="n">net_reward</span><span class="p">)</span>
+
+        <span class="c1">#storing the savings values in the lists for logging purposes</span>
+<span class="c1">#         print(env.carbon_savings_list)</span>
+        <span class="n">carbon_savings_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">carbon_savings_list</span><span class="p">)</span>
+        <span class="n">price_savings_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">price_savings_list</span><span class="p">)</span>
+        <span class="n">carbon_savings_forecast_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">carbon_savings_forecast_list</span><span class="p">)</span>
+        <span class="n">price_savings_forecast_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">price_savings_forecast_list</span><span class="p">)</span>
+
+        <span class="n">steps</span><span class="o">+=</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">net_reward</span><span class="p">,</span> <span class="n">reward_list</span><span class="p">,</span> <span class="n">battery_soc_list</span><span class="p">,</span> <span class="n">action_list</span><span class="p">,</span> <span class="n">power_list</span><span class="p">,</span> <span class="n">carbon_intensity_list</span><span class="p">,</span> <span class="n">price_intensity_list</span><span class="p">,</span> <span class="n">carbon_savings_list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">price_savings_list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">carbon_savings_forecast_list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">price_savings_forecast_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code for MILP to generate results on the training dataset:</span>
+<span class="k">if</span> <span class="n">milp_flag</span><span class="p">:</span>
+
+    <span class="c1"># instantiate an optimizer object based on the optimizer chosen, and create the model</span>
+    <span class="n">opt</span> <span class="o">=</span> <span class="n">MILPBattOpt</span><span class="p">(</span>
+        <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">,</span> <span class="n">objective</span><span class="o">=</span><span class="n">weight_price</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="n">solver</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span>
+    <span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">opt</span><span class="p">(</span><span class="n">train_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># provide the model to the environment so as to prepare the constraints and objectives</span>
+    <span class="n">env</span><span class="o">.</span><span class="n">set_model</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="c1"># test the MILP model</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------Producing results on training set--------&quot;</span><span class="p">)</span>
+    <span class="n">net_rewardt</span><span class="p">,</span> <span class="n">rewardlist</span><span class="p">,</span> <span class="n">battery_soc_list</span><span class="p">,</span> <span class="n">action_list</span><span class="p">,</span> <span class="n">power_list</span><span class="p">,</span> <span class="n">carbon_intensity_list</span><span class="p">,</span> <span class="n">price_intensity_list</span><span class="p">,</span> <span class="n">carbon_savings_list</span><span class="p">,</span> <span class="n">price_savings_list</span><span class="p">,</span> <span class="n">carbon_savings_forecast_list</span><span class="p">,</span> <span class="n">price_savings_forecast_list</span> <span class="o">=</span> <span class="n">testing</span><span class="p">(</span>
+        <span class="n">model</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">opt</span><span class="p">,</span> <span class="n">milp_flag</span><span class="p">)</span>
+
+    <span class="c1"># dump the results into csv file</span>
+    <span class="n">traindf</span> <span class="o">=</span> <span class="n">create_dataframe</span><span class="p">(</span><span class="n">battery_soc_list</span><span class="p">,</span> <span class="n">action_list</span><span class="p">,</span> <span class="n">power_list</span><span class="p">,</span> <span class="n">carbon_intensity_list</span><span class="p">,</span> <span class="n">price_intensity_list</span><span class="p">,</span>
+                          <span class="n">carbon_savings_list</span><span class="p">,</span> <span class="n">price_savings_list</span><span class="p">,</span> <span class="n">rewardlist</span><span class="p">,</span> <span class="n">carbon_savings_forecast_list</span><span class="p">,</span> <span class="n">price_savings_forecast_list</span><span class="p">)</span>
+    <span class="n">traindf</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">dir_path</span><span class="o">+</span><span class="s2">&quot;traindf_MILP.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test the Trained RL model on the training data set first:</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">milp_flag</span><span class="p">:</span>
+
+    <span class="n">opt</span> <span class="o">=</span> <span class="n">DRLBattOpt</span><span class="p">(</span>
+        <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">,</span>
+        <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1">#load the model first, if trained from the python script training_RL.py</span>
+    <span class="n">opt</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;model_checkpoints_UK/&#39;</span><span class="p">,</span> <span class="s1">&#39;Trained_RL_model&#39;</span><span class="p">)</span>
+
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------Producing results on training set--------&quot;</span><span class="p">)</span>
+    <span class="c1">#test the RL model on the training set</span>
+    <span class="n">net_rewardt</span><span class="p">,</span><span class="n">rewardlist</span><span class="p">,</span>  <span class="n">battery_soc_list</span><span class="p">,</span> <span class="n">action_list</span><span class="p">,</span> <span class="n">power_list</span><span class="p">,</span> <span class="n">carbon_intensity_list</span><span class="p">,</span> <span class="n">price_intensity_list</span><span class="p">,</span> <span class="n">carbon_savings_list</span><span class="p">,</span> <span class="n">price_savings_list</span><span class="p">,</span> <span class="n">carbon_savings_forecast_list</span><span class="p">,</span> <span class="n">price_savings_forecast_list</span> <span class="o">=</span> <span class="n">testing</span><span class="p">(</span><span class="n">opt</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">opt</span><span class="p">,</span> <span class="n">milp_flag</span><span class="p">)</span>
+
+    <span class="c1"># dump the training results into csv file</span>
+    <span class="n">traindf</span><span class="o">=</span> <span class="n">create_dataframe</span><span class="p">(</span><span class="n">battery_soc_list</span><span class="p">,</span> <span class="n">action_list</span><span class="p">,</span> <span class="n">power_list</span><span class="p">,</span> <span class="n">carbon_intensity_list</span><span class="p">,</span> <span class="n">price_intensity_list</span><span class="p">,</span> <span class="n">carbon_savings_list</span><span class="p">,</span> <span class="n">price_savings_list</span><span class="p">,</span><span class="n">rewardlist</span><span class="p">,</span>  <span class="n">carbon_savings_forecast_list</span><span class="p">,</span> <span class="n">price_savings_forecast_list</span><span class="p">)</span>
+    <span class="n">traindf</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">dir_path</span><span class="o">+</span><span class="s2">&quot;traindf_RL.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#read test data having emissions &amp; prices values of California dataset</span>
+<span class="c1">#load forecast and actual data for testing/inference</span>
+<span class="n">forecast_df</span> <span class="o">=</span> <span class="n">UKPricesEmissionsData</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">forecasts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">actual_df</span> <span class="o">=</span> <span class="n">UKPricesEmissionsData</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">forecasts</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">forecast_df</span><span class="o">.</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;prices&#39;</span><span class="p">]]</span>  <span class="o">=</span> <span class="n">forecast_df</span><span class="o">.</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;prices&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">actual_df</span><span class="o">.</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;prices&#39;</span><span class="p">]]</span>  <span class="o">=</span> <span class="n">actual_df</span><span class="o">.</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;prices&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="c1">#parse the test data to the MarketData backend</span>
+<span class="n">grid_data</span> <span class="o">=</span> <span class="n">MarketData</span><span class="o">.</span><span class="n">parse_backend</span><span class="p">(</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">storage_capacity</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="kc">True</span><span class="p">,</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">storage_capacity</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">storage_capacity</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">),</span>
+    <span class="n">price_forecast</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">forecast_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;prices&#39;</span><span class="p">],</span> <span class="n">forecast_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">price_actual</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">actual_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;prices&#39;</span><span class="p">],</span> <span class="n">actual_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">carbon_emissions_forecast</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">forecast_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;emissions&#39;</span><span class="p">],</span> <span class="n">forecast_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">carbon_emissions_actual</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">actual_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;emissions&#39;</span><span class="p">],</span> <span class="n">actual_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">carbon_prices_forecast</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">forecast_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;prices&#39;</span><span class="p">],</span> <span class="n">forecast_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">carbon_prices_actual</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">actual_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;prices&#39;</span><span class="p">],</span> <span class="n">actual_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">]),</span>
+    <span class="n">volume_forecast</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="n">volume_actual</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1">#instantiate a test grid Object by feeding in the parsed test data as an argument to the Grid class</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span>
+    <span class="n">timestep</span><span class="p">,</span>
+    <span class="s2">&quot;Grid&quot;</span><span class="p">,</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">storage_capacity</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;Simple Market as a Grid&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;*/5 * * * *&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">),</span>
+    <span class="n">grid_data</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">#modify the training data to test data and run the inference:</span>
+<span class="n">env</span><span class="o">.</span><span class="n">decision_unit</span><span class="o">.</span><span class="n">markets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid</span>
+<span class="n">env</span><span class="o">.</span><span class="n">decision_unit</span><span class="o">.</span><span class="n">generate_schedule</span><span class="p">(</span>
+        <span class="n">current_reference_time</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">forecast_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">forecast_df</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;timestamps&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">env</span><span class="o">.</span><span class="n">decision_unit</span><span class="o">.</span><span class="n">storage_entities</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">current_soc</span> <span class="o">=</span> <span class="mf">0.5</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate test results for MILP</span>
+<span class="c1"># Code for MILP to generate results on the training dataset:</span>
+<span class="k">if</span> <span class="n">milp_flag</span><span class="p">:</span>
+
+    <span class="c1"># instantiate an optimizer object based on the optimizer chosen, and create the model</span>
+    <span class="n">opt</span> <span class="o">=</span> <span class="n">MILPBattOpt</span><span class="p">(</span>
+        <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">,</span> <span class="n">objective</span><span class="o">=</span><span class="n">weight_price</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="n">solver</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span>
+    <span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">opt</span><span class="p">(</span><span class="n">train_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># provide the model to the environment so as to prepare the constraints and objectives</span>
+    <span class="n">env</span><span class="o">.</span><span class="n">set_model</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="c1"># test the MILP model</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------Producing results on test set--------&quot;</span><span class="p">)</span>
+    <span class="n">net_rewardt</span><span class="p">,</span> <span class="n">rewardlist</span><span class="p">,</span> <span class="n">battery_soc_list</span><span class="p">,</span> <span class="n">action_list</span><span class="p">,</span> <span class="n">power_list</span><span class="p">,</span> <span class="n">carbon_intensity_list</span><span class="p">,</span> <span class="n">price_intensity_list</span><span class="p">,</span> <span class="n">carbon_savings_list</span><span class="p">,</span> <span class="n">price_savings_list</span><span class="p">,</span> <span class="n">carbon_savings_forecast_list</span><span class="p">,</span> <span class="n">price_savings_forecast_list</span> <span class="o">=</span> <span class="n">testing</span><span class="p">(</span>
+        <span class="n">model</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">opt</span><span class="p">,</span> <span class="n">milp_flag</span><span class="p">)</span>
+
+    <span class="c1"># dump the results into csv file</span>
+    <span class="n">testdf</span> <span class="o">=</span> <span class="n">create_dataframe</span><span class="p">(</span><span class="n">battery_soc_list</span><span class="p">,</span> <span class="n">action_list</span><span class="p">,</span> <span class="n">power_list</span><span class="p">,</span> <span class="n">carbon_intensity_list</span><span class="p">,</span> <span class="n">price_intensity_list</span><span class="p">,</span>
+                          <span class="n">carbon_savings_list</span><span class="p">,</span> <span class="n">price_savings_list</span><span class="p">,</span> <span class="n">rewardlist</span><span class="p">,</span> <span class="n">carbon_savings_forecast_list</span><span class="p">,</span> <span class="n">price_savings_forecast_list</span><span class="p">)</span>
+    <span class="n">testdf</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">dir_path</span><span class="o">+</span><span class="s2">&quot;testdf_MILP.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate results for RL test data</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">milp_flag</span><span class="p">:</span>
+
+    <span class="c1">#load the model first, if trained from the python script training_RL.py</span>
+    <span class="n">opt</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;model_checkpoints_UK/&#39;</span><span class="p">,</span> <span class="s1">&#39;Trained_RL_model&#39;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;....... Starting Inference on the test dataset ........&quot;</span><span class="p">)</span>
+    <span class="c1">#test the RL model on the test set</span>
+    <span class="n">net_rewardt</span><span class="p">,</span><span class="n">rewardlist</span><span class="p">,</span> <span class="n">battery_soc_list</span><span class="p">,</span> <span class="n">action_list</span><span class="p">,</span> <span class="n">power_list</span><span class="p">,</span> <span class="n">carbon_intensity_list</span><span class="p">,</span> <span class="n">price_intensity_list</span><span class="p">,</span> <span class="n">carbon_savings_list</span><span class="p">,</span> <span class="n">price_savings_list</span><span class="p">,</span> <span class="n">carbon_savings_forecast_list</span><span class="p">,</span> <span class="n">price_savings_forecast_list</span> <span class="o">=</span> <span class="n">testing</span><span class="p">(</span><span class="n">opt</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">opt</span><span class="p">,</span> <span class="n">milp_flag</span><span class="p">)</span>
+
+    <span class="c1"># dump the test results into a csv file</span>
+    <span class="n">testdf</span><span class="o">=</span> <span class="n">create_dataframe</span><span class="p">(</span><span class="n">battery_soc_list</span><span class="p">,</span> <span class="n">action_list</span><span class="p">,</span> <span class="n">power_list</span><span class="p">,</span> <span class="n">carbon_intensity_list</span><span class="p">,</span> <span class="n">price_intensity_list</span><span class="p">,</span> <span class="n">carbon_savings_list</span><span class="p">,</span> <span class="n">price_savings_list</span><span class="p">,</span> <span class="n">rewardlist</span><span class="p">,</span> <span class="n">carbon_savings_forecast_list</span><span class="p">,</span> <span class="n">price_savings_forecast_list</span><span class="p">)</span>
+    <span class="n">testdf</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">dir_path</span><span class="o">+</span><span class="s2">&quot;testdf_RL.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Result-Visualization-through-Streamlit:">
+<h2>Result Visualization through Streamlit:<a class="headerlink" href="#Result-Visualization-through-Streamlit:" title="Permalink to this heading">#</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Feed the following command to run streamlit in the background that would show the results</span>
+<span class="c1">#modify the arguments as and when required, feed the training csv file, test csv file and whether the files are solved using MILP/RL.</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">pid</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;python -m streamlit run streamlit_analyze.py --server.address 127.0.0.1 --server.port 8501 -- --weight_emission </span><span class="si">{</span><span class="n">weight_emission</span><span class="si">}</span><span class="s2"> --weight_price </span><span class="si">{</span><span class="n">weight_price</span><span class="si">}</span><span class="s2"> &amp;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span>
+<span class="n">IFrame</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s1">&#39;http://127.0.0.1:8501&#39;</span><span class="p">,</span>  <span class="n">width</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">1050</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Inputs-from-User:">Inputs from User:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Instantiating-components-from-the-framework:">Instantiating components from the framework:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Creating-Decision-units-for-the-problem-statement:">Creating Decision units for the problem statement:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Function-to-Store-Results-in-a-dataframe-and-then-later-to-csv-format:">Function to Store Results in a dataframe and then later to csv format:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Training-Pipeline-for-the-algorithms:">Training Pipeline for the algorithms:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Mixed-integer-linear-programming-(MILP)-does-not-require-training,-hence-the-code-for-the-MILP-section-is-shown-directly-while-testing">Mixed integer linear programming (MILP) does not require training, hence the code for the MILP section is shown directly while testing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Testing-Pipeline-for-the-algorithms-:">Testing Pipeline for the algorithms :</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Result-Visualization-through-Streamlit:">Result Visualization through Streamlit:</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By EnCortex Team, Microsoft Research India
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023, Microsoft.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

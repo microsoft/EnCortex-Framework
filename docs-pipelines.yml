@@ -1,0 +1,40 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+strategy:
+  matrix:
+    Python39:
+      python.version: '3.9'
+
+steps:
+  - script: echo Hello, world!
+    displayName: 'Run a one-line script'
+  - checkout: self
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '$(python.version)'
+    displayName: 'Use Python $(python.version)'
+
+  - script: |
+      sudo apt install pandoc
+      python -m pip install --upgrade pip
+      pip install -r $(Build.SourcesDirectory)/docs/requirements.txt
+    displayName: 'Install dependencies'
+  - script: |
+      cd $(Build.SourcesDirectory)/docs/ && make clean && make html
+    displayName: 'Docs Build'
+  - task: AzureStaticWebApp@0
+    inputs:
+      app_location: 'docs/'
+      app_build_command: 'ls && pip install -r requirements.txt && make html'
+      output_location: '_build/html/'
+      verbose: true
+      skip_api_build: true
+      azure_static_web_apps_api_token: 'af84e8be7881040fa735cf3726fb2bd64f95b9d9742abc1aecf0ff4b7775fef52-1b6895b1-7693-4d36-ac83-a63c8fe0729201e26016'

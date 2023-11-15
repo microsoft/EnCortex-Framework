@@ -1,0 +1,4 @@
+[console_scripts]
+encortex_aml = encortex.azure:main
+encortex_azure = encortex.azure_utils:azure_app
+encortex_setup = encortex.__init__:setup_encortex

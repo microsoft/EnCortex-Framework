@@ -1,0 +1,640 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Energy Arbitrage &#8212; EnCortex Docs</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials_advanced/energy_arbitrage';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="EnCortex Features" href="../features/index.html" />
+    <link rel="prev" title="Tutorials(Advanced)" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">EnCortex Docs</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/index.html">Introduction.</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/setup.html">Setup</a></li>
+
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/battery_arbitrage.html">Energy Arbitrage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/microgrid.html">MicroGrid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/configurations.html">Configurations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../advanced/index.html">Advanced</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../advanced/setup.html">AzureML Compute</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../advanced/run.html">Develop locally(Internal-use only)</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Tutorials(Advanced)</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Energy Arbitrage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../features/index.html">EnCortex Features</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../algos/index.html">Developer Concepts</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../integration/index.html">Integrating with Azure</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../integration/application_insights.html">Azure Monitor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">Contributing</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/microsoft/EnCortex" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tutorials_advanced/energy_arbitrage.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Energy Arbitrage</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-running-on-aml-compute">Advanced: Running on <span class="xref myst">AML Compute</span></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="energy-arbitrage">
+<h1>Energy Arbitrage<a class="headerlink" href="#energy-arbitrage" title="Permalink to this heading">#</a></h1>
+<section id="advanced-running-on-aml-compute">
+<h2>Advanced: Running on <a class="reference internal" href="../advanced/setup.html#run-azureml-compute"><span class="std std-ref">AML Compute</span></a><a class="headerlink" href="#advanced-running-on-aml-compute" title="Permalink to this heading">#</a></h2>
+<p>In order to run the Energy Arbitrage experiments, place your scenario code <code class="docutils literal notranslate"><span class="pre">scenario_code.py</span></code> and run the script titled <code class="docutils literal notranslate"><span class="pre">run_encortex_on_aml.py</span></code> in an empty folder(let’s name it <code class="docutils literal notranslate"><span class="pre">encortex_on_aml</span></code>). The directory structure should look something like the following tree.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>encortex_on_aml/
+├── datasets
+└── scenario_code.py
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>It is important the folder containing <cite>scenario_code.py</cite> contains only the files required for the experiment since AML saves a copy of all the files in that directory as a part of code versioning for every experiment.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Don’t forget to add your wandb API Key when using Wandb.</p>
+</div>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-c2NlbmFyaW9fY29kZS5weQ==" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-c2NlbmFyaW9fY29kZS5weQ==" name="c2NlbmFyaW9fY29kZS5weQ==" role="tab" tabindex="0">scenario_code.py</button></div><div aria-labelledby="tab-0-c2NlbmFyaW9fY29kZS5weQ==" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-c2NlbmFyaW9fY29kZS5weQ==" name="c2NlbmFyaW9fY29kZS5weQ==" role="tabpanel" tabindex="0"><div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">rsome</span> <span class="kn">import</span> <span class="n">ro</span>
+<span class="kn">from</span> <span class="nn">rsome.lp</span> <span class="kn">import</span> <span class="n">Affine</span>
+
+<span class="kn">from</span> <span class="nn">encortex.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
+<span class="kn">from</span> <span class="nn">encortex.decision_unit</span> <span class="kn">import</span> <span class="n">DecisionUnit</span>
+<span class="kn">from</span> <span class="nn">encortex.environments.battery_arbitrage</span> <span class="kn">import</span> <span class="n">BatteryArbitrageMILPEnv</span>
+<span class="kn">from</span> <span class="nn">encortex.environments.battery_arbitrage</span> <span class="kn">import</span> <span class="n">BatteryArbitrageRLEnv</span>
+<span class="kn">from</span> <span class="nn">encortex.grid</span> <span class="kn">import</span> <span class="n">Grid</span>
+<span class="kn">from</span> <span class="nn">encortex.sources</span> <span class="kn">import</span> <span class="n">Battery</span>
+<span class="kn">from</span> <span class="nn">encortex.optimizers.milp</span> <span class="kn">import</span> <span class="n">MILPOptimizer</span>
+<span class="kn">from</span> <span class="nn">encortex.optimizers.rl</span> <span class="kn">import</span> <span class="n">EnCortexRLOptimizer</span>
+<span class="kn">from</span> <span class="nn">encortex.data</span> <span class="kn">import</span> <span class="n">MarketData</span>
+<span class="kn">from</span> <span class="nn">encortex.backend</span> <span class="kn">import</span> <span class="n">DFBackend</span>
+<span class="kn">from</span> <span class="nn">encortex.callbacks.env_callback</span> <span class="kn">import</span> <span class="n">EnvCallback</span>
+<span class="kn">from</span> <span class="nn">encortex.logger</span> <span class="kn">import</span> <span class="n">get_experiment_logger</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;battery_arbitrage_example.log&quot;</span><span class="p">)</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--milp&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">)</span>
+
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+<span class="n">milp</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">milp</span>
+
+<span class="n">battery</span> <span class="o">=</span> <span class="n">Battery</span><span class="p">(</span>
+    <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Battery&quot;</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;Battery&quot;</span><span class="p">,</span>
+    <span class="mi">10</span><span class="p">,</span>
+    <span class="mf">1.0</span><span class="p">,</span>
+    <span class="mf">1.0</span><span class="p">,</span>
+    <span class="mf">1.0</span><span class="p">,</span>
+    <span class="mi">90</span><span class="p">,</span>
+    <span class="mf">0.1</span><span class="p">,</span>
+    <span class="kc">False</span><span class="p">,</span>
+    <span class="mf">0.8</span><span class="p">,</span>
+    <span class="mf">20.0</span><span class="p">,</span>
+    <span class="mf">0.0</span><span class="p">,</span>
+    <span class="mi">10</span><span class="p">,</span>
+    <span class="kc">False</span><span class="p">,</span>
+    <span class="n">schedule</span><span class="o">=</span><span class="s2">&quot;0 * * * *&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">forecast_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/UK_data_2020_meanprev_shortened.csv&quot;</span><span class="p">)</span>
+<span class="n">actual_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/UK_data_2020_actuals_shortened.csv&quot;</span><span class="p">)</span>
+
+<span class="n">forecast_df</span><span class="p">[[</span><span class="s2">&quot;emissions&quot;</span><span class="p">,</span> <span class="s2">&quot;prices&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">forecast_df</span><span class="p">[</span>
+    <span class="p">[</span><span class="s2">&quot;emissions&quot;</span><span class="p">,</span> <span class="s2">&quot;prices&quot;</span><span class="p">]</span>
+<span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">actual_df</span><span class="p">[[</span><span class="s2">&quot;emissions&quot;</span><span class="p">,</span> <span class="s2">&quot;prices&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">actual_df</span><span class="p">[[</span><span class="s2">&quot;emissions&quot;</span><span class="p">,</span> <span class="s2">&quot;prices&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">grid_data</span> <span class="o">=</span> <span class="n">MarketData</span><span class="o">.</span><span class="n">parse_backend</span><span class="p">(</span>
+    <span class="mi">3</span><span class="p">,</span>
+    <span class="kc">True</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">),</span>
+    <span class="n">price_forecast</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">forecast_df</span><span class="p">[</span><span class="s2">&quot;prices&quot;</span><span class="p">],</span> <span class="n">forecast_df</span><span class="p">[</span><span class="s2">&quot;timestamps&quot;</span><span class="p">]),</span>
+    <span class="n">price_actual</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="n">actual_df</span><span class="p">[</span><span class="s2">&quot;prices&quot;</span><span class="p">],</span> <span class="n">actual_df</span><span class="p">[</span><span class="s2">&quot;timestamps&quot;</span><span class="p">]),</span>
+    <span class="n">carbon_emissions_forecast</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span>
+        <span class="n">forecast_df</span><span class="p">[</span><span class="s2">&quot;emissions&quot;</span><span class="p">],</span> <span class="n">forecast_df</span><span class="p">[</span><span class="s2">&quot;timestamps&quot;</span><span class="p">]</span>
+    <span class="p">),</span>
+    <span class="n">carbon_emissions_actual</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span>
+        <span class="n">actual_df</span><span class="p">[</span><span class="s2">&quot;emissions&quot;</span><span class="p">],</span> <span class="n">actual_df</span><span class="p">[</span><span class="s2">&quot;timestamps&quot;</span><span class="p">]</span>
+    <span class="p">),</span>
+    <span class="n">carbon_prices_forecast</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span>
+        <span class="n">forecast_df</span><span class="p">[</span><span class="s2">&quot;prices&quot;</span><span class="p">],</span> <span class="n">forecast_df</span><span class="p">[</span><span class="s2">&quot;timestamps&quot;</span><span class="p">]</span>
+    <span class="p">),</span>
+    <span class="n">carbon_prices_actual</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span>
+        <span class="n">actual_df</span><span class="p">[</span><span class="s2">&quot;prices&quot;</span><span class="p">],</span> <span class="n">actual_df</span><span class="p">[</span><span class="s2">&quot;timestamps&quot;</span><span class="p">]</span>
+    <span class="p">),</span>
+    <span class="n">volume_forecast</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="n">volume_actual</span><span class="o">=</span><span class="n">DFBackend</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span>
+    <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Grid&quot;</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;Grid&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;0 * * * *&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;h&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;h&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;h&quot;</span><span class="p">),</span>
+    <span class="n">schedule</span><span class="o">=</span><span class="s2">&quot;0 * * * *&quot;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">grid_data</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">contract</span> <span class="o">=</span> <span class="n">Contract</span><span class="p">(</span><span class="n">battery</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="n">du</span> <span class="o">=</span> <span class="n">DecisionUnit</span><span class="p">([</span><span class="n">contract</span><span class="p">])</span>
+
+<span class="n">exp_logger</span> <span class="o">=</span> <span class="n">get_experiment_logger</span><span class="p">(</span><span class="s2">&quot;wandb&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">milp</span><span class="p">:</span>
+    <span class="n">env</span> <span class="o">=</span> <span class="n">BatteryArbitrageMILPEnv</span><span class="p">(</span>
+        <span class="n">du</span><span class="p">,</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s2">&quot;2020-01-01T00:00&quot;</span><span class="p">),</span>
+        <span class="mi">42</span><span class="p">,</span>
+        <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">EnvCallback</span><span class="p">()],</span>
+        <span class="n">exp_logger</span><span class="o">=</span><span class="n">exp_logger</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">opt</span> <span class="o">=</span> <span class="n">MILPOptimizer</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="s2">&quot;min&quot;</span><span class="p">)</span>
+    <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="n">objective_function_values</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">reward_values</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s2">&quot;2020-01-01T00:00&quot;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+        <span class="n">obj</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">done</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Time: </span><span class="si">{</span><span class="n">time</span><span class="si">}</span><span class="s2"> | Obj: </span><span class="si">{</span><span class="n">obj</span><span class="si">}</span><span class="s2"> | Rew: </span><span class="si">{</span><span class="n">reward</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">objective_function_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="n">reward_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reward</span><span class="p">)</span>
+
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">env</span> <span class="o">=</span> <span class="n">BatteryArbitrageRLEnv</span><span class="p">(</span>
+        <span class="n">du</span><span class="p">,</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s2">&quot;2020-01-01T00:00&quot;</span><span class="p">),</span>
+        <span class="mi">42</span><span class="p">,</span>
+        <span class="n">callbacks</span><span class="o">=</span><span class="p">[],</span>
+        <span class="n">action_window</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;h&quot;</span><span class="p">),</span>
+        <span class="n">future_window</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="s2">&quot;h&quot;</span><span class="p">),</span>
+        <span class="n">exp_logger</span><span class="o">=</span><span class="n">exp_logger</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">env</span><span class="o">.</span><span class="n">log_experiment_hyperparameters</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">export_config</span><span class="p">())</span>
+    <span class="n">opt</span> <span class="o">=</span> <span class="n">EnCortexRLOptimizer</span><span class="p">(</span>
+        <span class="n">env</span><span class="p">,</span>
+        <span class="s2">&quot;dqn&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;MlpPolicy&quot;</span><span class="p">,</span>
+        <span class="mi">40</span><span class="p">,</span>
+        <span class="n">target_update_interval</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">opt</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="n">log_interval</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+<p>Now,</p>
+<ol class="arabic simple">
+<li><p>Create a folder <code class="docutils literal notranslate"><span class="pre">data</span></code> and add your <code class="docutils literal notranslate"><span class="pre">train.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">test.csv</span></code> files</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">exp_aml.py</span></code> on the terminal or <code class="docutils literal notranslate"><span class="pre">!python</span> <span class="pre">exp_aml.py</span></code> inside a jupyter-notebook cell to submit a job to AML.</p></li>
+<li><p>You’ll be prompted to login via your Microsoft account. Only after successful authentication is the job submitted.</p></li>
+</ol>
+<blockquote>
+<div><p>Results can be viewed on the AzureML studio. Follow the <a class="reference internal" href="../advanced/setup.html#setup-aml-job-results"><span class="std std-ref">instructions here</span></a> to visualize the runs. Detailed visualizations are missing(Charts will be added as a part of AzureML Image support in the future).</p>
+</div></blockquote>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tutorials(Advanced)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../features/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">EnCortex Features</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-running-on-aml-compute">Advanced: Running on <span class="xref myst">AML Compute</span></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By EnCortex Team, Microsoft Research India
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023, Microsoft.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

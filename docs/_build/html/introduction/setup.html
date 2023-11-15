@@ -1,0 +1,581 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Setup &#8212; EnCortex Docs</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'introduction/setup';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tutorial" href="../tutorials/index.html" />
+    <link rel="prev" title="Introduction." href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">EnCortex Docs</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Introduction.</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Setup</a></li>
+
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/battery_arbitrage.html">Energy Arbitrage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/microgrid.html">MicroGrid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/configurations.html">Configurations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/index.html">Advanced</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/setup.html">AzureML Compute</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../advanced/run.html">Develop locally(Internal-use only)</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials_advanced/index.html">Tutorials(Advanced)</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials_advanced/energy_arbitrage.html">Energy Arbitrage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../features/index.html">EnCortex Features</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../algos/index.html">Developer Concepts</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../integration/index.html">Integrating with Azure</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../integration/application_insights.html">Azure Monitor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">Contributing</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/microsoft/EnCortex" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/introduction/setup.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Setup</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Setup</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#azureml-aml">AzureML(AML)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-resources">Compute Resources</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#azureml-notebooks">AzureML notebooks</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approach-1-pip-aml-notebook">Approach 1: Pip(AML Notebook)</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="setup">
+<h1>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h1>
+<!-- In this section, we first cover setting up your [Azure Synapse workspace](https://azure.microsoft.com/en-in/products/synapse-analytics/) (see [below](setup/azure-synapse)). -->
+<!--[Azure ML workspace](setup/azureml). Then, we show two([Docker](setup/docker),[Pip](setup/pip)) approaches to install `EnCortex` in your workspace. -->
+<p>In this section, we cover setting up your <a class="reference external" href="https://azure.microsoft.com/en-us/products/machine-learning/#product-overview">AzureML</a> environment to run <code class="docutils literal notranslate"><span class="pre">EnCortex</span></code>. AzureML empowers data scientists and developers to build, deploy, and manage high-quality models faster and with confidence. AML also helps accelerate time to value with industry-leading machine learning operations (MLOps), open-source interoperability, and integrated tools. Hence, we recommend running <code class="docutils literal notranslate"><span class="pre">EnCortex</span></code> on Azure ML.</p>
+<p>In the next few pages and sections, we cover:</p>
+<ol class="arabic simple">
+<li><p>We cover <a class="reference internal" href="#setup-azureml"><span class="std std-ref">setting up your AzureML studio</span></a>.</p></li>
+<li><p>Setup <a class="reference internal" href="#run-azureml-notebooks"><span class="std std-ref">AzureML notebooks</span></a></p></li>
+<li><p><a class="reference internal" href="#setup-pip"><span class="std std-ref">Installing</span></a> <code class="docutils literal notranslate"><span class="pre">EnCortex</span></code></p></li>
+<li><p><a class="reference internal" href="../tutorials/index.html"><span class="doc std std-doc">Tutorials</span></a></p></li>
+</ol>
+<p>Please proceed next if this is your first time using <code class="docutils literal notranslate"><span class="pre">EnCortex</span></code> or you can head onto the <a class="reference internal" href="../advanced/index.html"><span class="doc std std-doc">Advanced section</span></a> to start developing with <code class="docutils literal notranslate"><span class="pre">EnCortex</span></code>.</p>
+<section id="azureml-aml">
+<span id="setup-azureml"></span><h2>AzureML(AML)<a class="headerlink" href="#azureml-aml" title="Permalink to this heading">#</a></h2>
+<p>Setup your AzureML studio. To do this, you’ll need access to your resource group in Azure. In this setup, we cover setting up AzureML through the portal, but other setup methods can be found <a class="reference external" href="https://learn.microsoft.com/en-us/azure/machine-learning/how-to-configure-environment">here</a>.</p>
+<ol class="arabic simple">
+<li><p>Sign in to your <a class="reference external" href="https://ms.portal.azure.com">Azure Portal</a> -&gt; <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">Create</span> <span class="pre">a</span> <span class="pre">Resource</span></code> -&gt; Search “Azure Machine Learning” and follow the instructions to setup your AzureML studio.</p></li>
+<li><p>From the <strong>Overview</strong> tab on the sidebar of your now created Azure ML workspace, click on <strong>Download config.json</strong> button to download your AML <code class="docutils literal notranslate"><span class="pre">config.json</span></code> file.</p></li>
+<li><p>Head onto <a class="reference external" href="https://ml.azure.com">ml.azure.com</a> and sign in to your account to view the AML studio. Alternatively, you can directly access your studio from the <strong>Overview</strong> tab by clicking on the <strong>Studio Web URL</strong>.</p></li>
+</ol>
+<section id="compute-resources">
+<span id="setup-azureml-compute"></span><h3>Compute Resources<a class="headerlink" href="#compute-resources" title="Permalink to this heading">#</a></h3>
+<p>Now that you’ve setup your AML studio, we now move on to creating a compute resource. A compute resource is VM-like entity that allows you to run code. Having a compute resource is mandatory to run any <code class="docutils literal notranslate"><span class="pre">EnCortex</span></code> experiment. Click on the <strong>Compute</strong> tab from the sidebar inside your AML studio and click on <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">New</span></code> button of the type of compute resource you want to spin up. We recommend selecting the following compute resources based on requirements:</p>
+<ol class="arabic simple">
+<li><p>For simple EDA and small workloads, we recommend a CPU Virtual Machine. From the sidebar, Compute -&gt; <em>Compute Instance</em> -&gt; Enter Compute Name -&gt; CPU -&gt; <em>STANDARD_D13_V2</em></p></li>
+<li><p>For larger workloads involving multiple parallel experiments, we recommend a GPU Virtual Machine.  From the sidebar, Compute -&gt; <em>Compute Cluster</em> -&gt; Enter Cluster name -&gt; Dedicated tier -&gt; <em>Standard_DS3_v2</em> .</p></li>
+</ol>
+<p>You’re now ready to setup AML notebooks.</p>
+</section>
+</section>
+<section id="azureml-notebooks">
+<span id="run-azureml-notebooks"></span><h2>AzureML notebooks<a class="headerlink" href="#azureml-notebooks" title="Permalink to this heading">#</a></h2>
+<p>AzureML notebooks provides a jupyter notebook interface to play and explore <code class="docutils literal notranslate"><span class="pre">EnCortex</span></code>. To run <code class="docutils literal notranslate"><span class="pre">EnCortex</span></code> on AzureML notebooks, follow the instructiosn below:</p>
+<ol class="arabic simple">
+<li><p>Make sure your compute is instantiated(see <a class="reference internal" href="#setup-azureml-compute"><span class="std std-ref">previous section</span></a>)</p></li>
+<li><p>From your studio homepage, navigate to the <code class="docutils literal notranslate"><span class="pre">Notebooks</span></code> tab and click on the <code class="docutils literal notranslate"><span class="pre">+</span></code> icon to create a notebook.</p></li>
+<li><p>Connect to the above created compute on the top of notebook through the dropdown titled <code class="docutils literal notranslate"><span class="pre">Compute</span> <span class="pre">Instance</span></code> and select the <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3.8</span> <span class="pre">-</span> <span class="pre">AzureML</span></code> environment from the far-right dropdown.</p></li>
+<li><p>Run the the installation instructions mentioned in <a class="reference internal" href="#setup-pip"><span class="std std-ref">Setup through Pip</span></a> and you’re ready to run EnCortex.</p></li>
+</ol>
+</section>
+</section>
+<section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h1>
+<p>Your AML notebook environment is now set. Now, in order to install <code class="docutils literal notranslate"><span class="pre">EnCortex</span></code>, we recommend the following approach:</p>
+<section id="approach-1-pip-aml-notebook">
+<span id="setup-pip"></span><h2>Approach 1: Pip(AML Notebook)<a class="headerlink" href="#approach-1-pip-aml-notebook" title="Permalink to this heading">#</a></h2>
+<blockquote>
+<div><p><strong>Accessible by &#64;Microsoft email aliases only.</strong></p>
+</div></blockquote>
+<ol class="arabic simple">
+<li><p>Download the latest wheel files from <a class="reference external" href="https://microsoftapc-my.sharepoint.com/:f:/g/personal/t-vballoli_microsoft_com/Em4E46gRGyhCuORVvEzGf5MBESMfXKmbiGzCtXlf-nVCyQ?e=lDW1Bj">here</a>(Go to the <code class="docutils literal notranslate"><span class="pre">wheels</span></code> folder)</p></li>
+<li><p>Create a folder on AML called <code class="docutils literal notranslate"><span class="pre">encortex_wheels</span></code> through the UI.</p></li>
+<li><p>Upload the downloaded wheels to the <code class="docutils literal notranslate"><span class="pre">encortex_wheels</span></code> folder.</p></li>
+<li><p>Run the following command in an AML notebook cell:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>!pip<span class="w"> </span>install<span class="w"> </span>encortex_wheels/*.whl
+</pre></div>
+</div>
+<p>To verify installation, run the following code in your AML notebook cell and it should give out a string like <code class="docutils literal notranslate"><span class="pre">0.1.23</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>import<span class="w"> </span>encortex
+print<span class="o">(</span>encortex.__version__<span class="o">)</span>
+</pre></div>
+</div>
+<p>You’re now ready to use AzureML notebooks. To run pre-defined scenarios, head on to <a class="reference internal" href="../tutorials/index.html"><span class="doc std std-doc">Tutorials</span></a> and follow the AML Notebook instructions for each of the scenarios there.</p>
+<!-- (setup/azure-synapse)=
+### Azure Synapse
+
+Azure Synapse Analytics is a limitless analytics service that brings together data integration, enterprise data warehousing and big data analytics. It gives you the freedom to query data on your terms, using either serverless or dedicated options—at scale. Azure Synapse brings these worlds together with a unified experience to ingest, explore, prepare, transform, manage and serve data for immediate BI and machine learning needs.
+
+Through Synapse, you can integrate any data from all your databases and use them directly within `EnCortex`.
+
+
+#### Create Azure Synapse Worksace
+1. Connect to your [Azure Portal](
+    https://ms.portal.azure.com) -> Create a Resource -> Search for Synapse(Click on Azure Synapes Analytics) -> Fill the details -> Click on Create.
+2. Head on to your newly created resource. In the overview tab on the sidebar, click on the `Workspace web URL` to access your Synapse Workspace Studio.
+
+#### Create Apache Spark Pool
+
+Now, let's create an Apache Spark Pool that acts as a compute to run `EnCortex` code.
+1. From the sidebar, click on Manage -> Apache Spark Pools -> Click on `+New` to create.
+2. For small scale experiments, we recommend `Memory Optimized` node family, `Medium` size node. After entering the Apache Spark Pool name, head onto `Additional Settings` on the next tab and enable `Session Level Packages`.
+3. Click `Review + Create` and wait for a few minutes while the Spark Pool is created.
+
+#### Install EnCortex
+
+To install `EnCortex`, we recommend installing through Synapse's Workspace packages.
+1. Head on to `Manage`->`Workspace Package`->`Upload .whl` file. Download the `encortex` and `dfdb` file from here and upload them.
+2. Now, click on `Apache Spark pools` within the `Manage` tab from the sidebar and click on the `...` button when you hover over the Spark pool you created in the previous step.
+3. Now, create your first notebook by heading onto `Develop` tab from the sidebar and click on the `+` -> `Notebook` on top to create a notebook or upload one from the [tutorials](../tutorials/index.md).
+
+You can now head onto [tutorials](../tutorials/index.md) run any of the pre-defined scenarios. -->
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduction.</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../tutorials/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tutorial</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Setup</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#azureml-aml">AzureML(AML)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-resources">Compute Resources</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#azureml-notebooks">AzureML notebooks</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approach-1-pip-aml-notebook">Approach 1: Pip(AML Notebook)</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By EnCortex Team, Microsoft Research India
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023, Microsoft.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

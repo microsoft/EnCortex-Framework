@@ -1,0 +1,43 @@
+{
+  "mimeTypes": {
+    ".css": "text/css",
+    ".js": "text/javascript",
+    ".json": "text/json"
+  },
+  "responseOverrides": {
+    "401": {
+      "redirect": "/.auth/login/aad",
+      "statusCode": 302
+    }
+  },
+  "routes": [
+    {
+      "route": "/.auth/login/github",
+      "statusCode": "401"
+    },
+    {
+      "route": "/.auth/login/twitter",
+      "statusCode": "401"
+    },
+    {
+      "route": "/.auth/login/facebook",
+      "statusCode": "401"
+    },
+    {
+      "route": "/.auth/login/google",
+      "statusCode": "401"
+    },
+    {
+      "allowedRoles": [
+        "authenticated"
+      ],
+      "route": "/framework.html"
+    },
+    {
+      "allowedRoles": [
+        "authenticated"
+      ],
+      "route": "/encortex*"
+    }
+  ]
+}

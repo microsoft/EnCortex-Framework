@@ -1,0 +1,4 @@
+*.pyc
+_build/
+*.whl
+*.egg-info
