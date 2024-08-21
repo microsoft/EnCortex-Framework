@@ -37,4 +37,4 @@ steps:
       output_location: '_build/html/'
       verbose: true
       skip_api_build: true
-      azure_static_web_apps_api_token: 'af84e8be7881040fa735cf3726fb2bd64f95b9d9742abc1aecf0ff4b7775fef52-1b6895b1-7693-4d36-ac83-a63c8fe0729201e26016'
+      azure_static_web_apps_api_token: $(DEPLOYMENT_TOKEN)
