@@ -1,5 +1,5 @@
 alembic==1.4.3
-azure-identity==1.7.0
+azure-identity==1.16.1
 azure-keyvault-keys==4.5.1
 azure-keyvault-secrets==4.4.0
 azureml-core==1.44.0
